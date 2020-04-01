@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "ssa2020-front-hypnotized-chicken"
+  "defaultProject": "ssa2020-front-hypnotized-chicken",
+  "cli": {
+    "analytics": "dc28a880-c3b1-4a6f-b389-ddbaef6efec3"
+  }
 }

@@ -1,0 +1,16 @@
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav #sidenav="" class="app-sidenav mat-elevation-z15"
+               [opened]="!(isScreenSmall | async)"
+               [mode]="(isScreenSmall | async) ? 'over' : 'side'">
+    <mat-toolbar color="primary">
+      Menu
+    </mat-toolbar>
+    <app-tree></app-tree>
+  </mat-sidenav>
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-sidenav-container>

@@ -3,7 +3,7 @@
                [opened]="!(isScreenSmall | async)"
                [mode]="(isScreenSmall | async) ? 'over' : 'side'">
     <mat-toolbar color="primary">
-      Menu
+      {{title}}
     </mat-toolbar>
     <app-tree></app-tree>
   </mat-sidenav>

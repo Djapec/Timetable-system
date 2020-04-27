@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'timetable', loadChildren: () => import('./components/timetable.module').then(m => m.TimetableModule) },
+  { path: '**', redirectTo: 'timetable' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

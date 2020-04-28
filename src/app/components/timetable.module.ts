@@ -11,6 +11,7 @@ import { TimetableService } from "../services/timetable.service";
 import { TreeComponent } from './tree/tree.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import {RouterModule, Routes} from "@angular/router";
+import { ScheduleTableComponent } from './schedule-table/schedule-table.component';
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
@@ -28,7 +29,8 @@ const routes: Routes = [
     SidenavComponent,
     ToolbarComponent,
     TreeComponent,
-    TimetableComponent
+    TimetableComponent,
+    ScheduleTableComponent
   ],
   imports: [
     CommonModule,

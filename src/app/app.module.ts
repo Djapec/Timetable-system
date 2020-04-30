@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from "@angular/cdk/layout";
+import { LayoutModule } from '@angular/cdk/layout';
+import {TimetableModule} from './components/timetable.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { LayoutModule } from "@angular/cdk/layout";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    TimetableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

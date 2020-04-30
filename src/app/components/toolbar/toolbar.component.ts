@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,7 +10,7 @@ export class ToolbarComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private root: ActivatedRoute) { }
 
   ngOnInit(): void {
   }

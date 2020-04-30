@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class TimetableAppComponent implements OnInit {
-
+  title = "Menu";
   constructor() { }
 
   ngOnInit(): void {

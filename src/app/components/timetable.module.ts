@@ -18,8 +18,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
   children: [
-    { path: '', component: MainContentComponent },
-    {path: 'current-scheduler', component: TimetableNavTabComponent},
+    {path: '', component: TimetableNavTabComponent},
   ]},
   { path: '**', redirectTo: ''}
 ];

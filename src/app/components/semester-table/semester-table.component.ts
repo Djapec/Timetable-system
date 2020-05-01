@@ -24,7 +24,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class SemesterTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'semester', 'data' , 'download'];
+  displayedColumns: string[] = ['position', 'semester', 'data' , 'view'];
   dataSource = ELEMENT_DATA;
 
   constructor() { }

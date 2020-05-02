@@ -1,0 +1,62 @@
+
+.day-panel{
+  margin-top: 5px;
+  margin-bottom: 7px;
+}
+.class-card{
+  margin-top: 5px;
+  margin-bottom: 7px;
+  background-color: #7ebac5;
+}
+.day-class-slot{
+  background-color: antiquewhite;
+}
+.day-slot{
+  text-align: center;
+  text-transform: uppercase;
+}
+.class{
+  display: grid;
+  grid-template-columns: 50px 1fr 50px 70px;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "time profesor-class room delete"
+     " . profesor . edit";
+}
+
+.class-time{
+  grid-area: time;
+  justify-self: start;
+  place-self: end;
+}
+.class-professor{
+  grid-area: profesor;
+  place-self: center;
+  align-self: center;
+}
+.subject-title{
+  grid-area: profesor-class;
+  place-self: start;
+  justify-self: center;
+}
+.class-room{
+  grid-area: room;
+  justify-self: end;
+  place-self: end;
+}
+.delete-button{
+  grid-area: delete;
+  place-self: center;
+  justify-self: end;
+}
+.edit-button{
+  grid-area: edit;
+  place-self: center;
+  justify-self: end;
+}
+
+@media only screen and (min-width: 820px) {
+  .schedule {
+    width: 100%;
+  }
+}

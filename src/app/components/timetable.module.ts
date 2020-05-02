@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from "../shared/material/material.module";
 
-import { MainContentComponent } from "./main-content/main-content.component";
-import { SidenavComponent } from "./sidenav/sidenav.component";
-import { ToolbarComponent } from "./toolbar/toolbar.component";
+import { MainContentComponent } from './main-content/main-content.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TimetableAppComponent } from './timetable-app.component';
 import { TimetableService } from "../services/timetable.service";
 import { TreeComponent } from './tree/tree.component';

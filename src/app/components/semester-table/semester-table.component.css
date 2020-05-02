@@ -1,0 +1,9 @@
+table{
+  width: 100%;
+}
+table th,td{
+  text-align: center;
+}
+.viewbutton {
+  margin-left: 20px;
+}

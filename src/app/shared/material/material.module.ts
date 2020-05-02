@@ -6,10 +6,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from "@angular/material/card";
-import { MatTreeModule } from "@angular/material/tree";
-import { MatGridListModule } from "@angular/material/grid-list";
-import { MatExpansionModule } from "@angular/material/expansion";
+import { MatCardModule } from '@angular/material/card';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -23,9 +24,10 @@ import { MatExpansionModule } from "@angular/material/expansion";
     MatCardModule,
     MatTreeModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ],
-  exports:[
+  exports: [
     MatTableModule,
     MatToolbarModule,
     MatButtonModule,

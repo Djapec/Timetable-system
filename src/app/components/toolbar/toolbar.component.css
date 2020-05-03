@@ -4,6 +4,15 @@
   margin: 8px;
   min-width: 56px;
 }
+a{
+  text-decoration: none;
+  color: white;
+  margin-left: 10px;
+}
+a :hover{
+  color: lightgray;
+}
+
 @media (max-width: 720px) {
   .sidenav-toggle {
     display: flex;

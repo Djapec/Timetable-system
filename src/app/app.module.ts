@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from "@angular/cdk/layout";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { HttpClientModule } from "@angular/common/http";
+import {TimetableModule} from './components/timetable.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     LayoutModule,
     NgxMaterialTimepickerModule.setLocale("en-US"),
-    HttpClientModule
+    HttpClientModule,
+    TimetableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

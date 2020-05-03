@@ -10,7 +10,11 @@ import { TimetableAppComponent } from './timetable-app.component';
 import { TimetableService } from '../services/timetable.service';
 import { TreeComponent } from './tree/tree.component';
 import { TimetableComponent } from './timetable/timetable.component';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes} from "@angular/router";
+import { TermDialogComponent } from './term-dialog/term-dialog.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { ScheduleTableComponent } from './schedule-table/schedule-table.component';
 import { OverviewComponent } from './overview/overview.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -38,20 +42,31 @@ const routes: Routes = [
     ToolbarComponent,
     TreeComponent,
     TimetableComponent,
+<<<<<<< src/app/components/timetable.module.ts
+    TermDialogComponent
+=======
     TimetableNavTabComponent,
     ScheduleTableComponent,
     SemesterTableComponent,
     OverviewComponent
+>>>>>>> src/app/components/timetable.module.ts
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule.forChild(routes),
+<<<<<<< src/app/components/timetable.module.ts
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxMaterialTimepickerModule.setLocale("en-US")
+=======
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
     MatTabsModule
+>>>>>>> src/app/components/timetable.module.ts
   ],
   providers: [
     TimetableService

@@ -1,18 +1,18 @@
 <mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
+  <mat-expansion-panel *ngFor="let module of modules">
+    <mat-expansion-panel-header (click)="getSubjects(module.id)">
+      <span hidden>{{module.id}}</span>
       <mat-panel-title>
-        IT - SI
+        {{module.name}}
       </mat-panel-title>
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <mat-list-item>IES</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>SSA</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>PR</mat-list-item>
+      <div *ngFor="let subject of subjects">
+        <mat-list-item (click)="openDialog(subject.id)">{{subject.name}}</mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
     </mat-list>
   </mat-expansion-panel>
 </mat-accordion>

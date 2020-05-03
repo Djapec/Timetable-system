@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from "@angular/cdk/layout";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { LayoutModule } from "@angular/cdk/layout";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    NgxMaterialTimepickerModule.setLocale("en-US"),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,3 +3,29 @@
 body {
   margin: 0;
 }
+.timepicker-overlay{
+  z-index: 1000!important;
+}
+
+.timepicker__header {
+  background-color: #3f51b5 !important;
+}
+
+.clock-face__clock-hand {
+  background-color: #3f51b5 !important;
+}
+.clock-face__clock-hand::after {
+   background-color: #3f51b5 !important;
+ }
+
+.clock-face__clock-hand::before {
+   border-color: #3f51b5 !important;
+ }
+
+.clock-face__number > span.active {
+  background-color: #3f51b5 !important;
+}
+
+button:not(.timepicker-dial__item) {
+  color: #3f51b5 !important;
+}

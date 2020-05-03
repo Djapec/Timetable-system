@@ -10,7 +10,12 @@ import { MatCardModule } from "@angular/material/card";
 import { MatTreeModule } from "@angular/material/tree";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatExpansionModule } from "@angular/material/expansion";
-
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   imports: [
@@ -23,7 +28,13 @@ import { MatExpansionModule } from "@angular/material/expansion";
     MatCardModule,
     MatTreeModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   exports:[
     MatTableModule,
@@ -35,7 +46,13 @@ import { MatExpansionModule } from "@angular/material/expansion";
     MatCardModule,
     MatTreeModule,
     MatGridListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

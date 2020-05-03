@@ -11,6 +11,10 @@ import { TimetableService } from "../services/timetable.service";
 import { TreeComponent } from './tree/tree.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import {RouterModule, Routes} from "@angular/router";
+import { TermDialogComponent } from './term-dialog/term-dialog.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
@@ -28,12 +32,17 @@ const routes: Routes = [
     SidenavComponent,
     ToolbarComponent,
     TreeComponent,
-    TimetableComponent
+    TimetableComponent,
+    TermDialogComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxMaterialTimepickerModule.setLocale("en-US")
   ],
   providers: [
     TimetableService

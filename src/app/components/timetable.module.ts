@@ -7,7 +7,6 @@ import { MainContentComponent } from './main-content/main-content.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TimetableAppComponent } from './timetable-app.component';
-import { TimetableService } from '../services/timetable.service';
 import { TreeComponent } from './tree/tree.component';
 import { TimetableComponent } from './timetable/timetable.component';
 import {RouterModule, Routes} from "@angular/router";
@@ -28,7 +27,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
     children: [
-      { path: 'timetable/overview', component: OverviewComponent},
+      { path: 'overview', component: OverviewComponent},
       { path: '', component: TimetableNavTabComponent },
     ]},
   { path: '**', redirectTo: ''}
@@ -42,34 +41,26 @@ const routes: Routes = [
     ToolbarComponent,
     TreeComponent,
     TimetableComponent,
-<<<<<<< src/app/components/timetable.module.ts
-    TermDialogComponent
-=======
+    TermDialogComponent,
     TimetableNavTabComponent,
     ScheduleTableComponent,
     SemesterTableComponent,
     OverviewComponent
->>>>>>> src/app/components/timetable.module.ts
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule.forChild(routes),
-<<<<<<< src/app/components/timetable.module.ts
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxMaterialTimepickerModule.setLocale("en-US")
-=======
+    NgxMaterialTimepickerModule.setLocale("en-US"),
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
     MatTabsModule
->>>>>>> src/app/components/timetable.module.ts
   ],
-  providers: [
-    TimetableService
-  ]
+  providers: []
 })
 export class TimetableModule { }

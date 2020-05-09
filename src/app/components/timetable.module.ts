@@ -9,11 +9,11 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TimetableAppComponent } from './timetable-app.component';
 import { TreeComponent } from './tree/tree.component';
 import { TimetableComponent } from './timetable/timetable.component';
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule, Routes} from '@angular/router';
 import { TermDialogComponent } from './term-dialog/term-dialog.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
-import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { ScheduleTableComponent } from './schedule-table/schedule-table.component';
 import { OverviewComponent } from './overview/overview.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,11 +23,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {TimetableNavTabComponent} from './timetable-nav-tab/timetable-nav-tab.component';
 import {SemesterTableComponent} from './semester-table/semester-table.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SheduleViewComponent } from './shedule-view/shedule-view.component';
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
     children: [
       { path: 'overview', component: OverviewComponent},
+      { path: 'view', component: SheduleViewComponent},
       { path: '', component: TimetableNavTabComponent },
     ]},
   { path: '**', redirectTo: ''}
@@ -45,7 +47,8 @@ const routes: Routes = [
     TimetableNavTabComponent,
     ScheduleTableComponent,
     SemesterTableComponent,
-    OverviewComponent
+    OverviewComponent,
+    SheduleViewComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +57,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxMaterialTimepickerModule.setLocale("en-US"),
+    NgxMaterialTimepickerModule.setLocale('en-US'),
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,

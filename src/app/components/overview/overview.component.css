@@ -18,8 +18,3 @@ mat-icon{
   color: white;
 }
 
-@media screen and (max-width: 768px) {
-  *{
-  background-color: #3f51b5;
-  }
-}

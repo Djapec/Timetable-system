@@ -7,6 +7,8 @@ import {Weekday} from "../../models/weekday";
 import { LecturerService } from "../../services/lecturer.service";
 import {WeekdayService} from "../../services/weekday.service";
 import {ClassroomService} from "../../services/classroom.service";
+import {Subject} from "../../models/subject";
+import {SubjectService} from "../../services/subject.service";
 
 @Component({
   selector: 'app-term-dialog',
@@ -27,13 +29,18 @@ export class TermDialogComponent implements OnInit {
   lecturers: Lecturer[];
   weekdays: Weekday[];
 
+  subject: Subject;
+
   numbers: number[] = [1, 2, 3, 4, 5];
 
   constructor(public dialogRef: MatDialogRef<TermDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public subjectId: number,
+              @Inject(MAT_DIALOG_DATA) public moduleId: number,
+              @Inject(MAT_DIALOG_DATA) public semesterId: number,
               private lecturerService: LecturerService,
               private weekdayService: WeekdayService,
-              private classroomService: ClassroomService) { }
+              private classroomService: ClassroomService,
+              private subjectService: SubjectService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -49,7 +56,9 @@ export class TermDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.lecturerService.getLecturersBySubject(1,1,1).subscribe((data)=>{
+    this.subjectService.getSubjectById(this.subjectId).subscribe((data) => {
+      this.subject = data;});
+    this.lecturerService.getLecturersBySubject(this.subjectId,this.moduleId,this.semesterId).subscribe((data)=>{
       this.lecturers = data});
     this.weekdayService.getWeekdays().subscribe((data)=>{
       this.weekdays = data});

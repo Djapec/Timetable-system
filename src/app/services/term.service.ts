@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Weekday} from "../models/weekday";
+import {Term} from "../models/term";
 
 @Injectable({
   providedIn: 'root'
 })
-export class WeekdayService {
+export class TermService {
   apiURL: string = 'http://localhost:5000/api/';
-
   constructor(private httpClient: HttpClient) { }
 
-  public getWeekdays(){
-    return this.httpClient.get<Weekday[]>(this.apiURL + `Weekdays/`);
+  public getTermsByScheduleId(scheduleId: number){
+    return this.httpClient.get<Term[]>(this.apiURL + `Terms/?scheduleId=${scheduleId}`);
   }
 }

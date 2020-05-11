@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SidenavToggleService} from '../../services/sidenav-toggle.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-schedule-table',
@@ -7,9 +8,12 @@ import {SidenavToggleService} from '../../services/sidenav-toggle.service';
   styleUrls: ['./schedule-table.component.css']
 })
 export class ScheduleTableComponent implements OnInit {
+
+  constructor(private sidenavToggleService: SidenavToggleService, private route: ActivatedRoute) { }
+
+  scheduleId: number;
   panelOpenState: boolean;
   state: boolean;
-  constructor(private sidenavToggleService: SidenavToggleService) { }
 
   changeState() {
     this.sidenavToggleService.changeState(this.state = true);
@@ -17,6 +21,9 @@ export class ScheduleTableComponent implements OnInit {
   ngOnInit(): void {
     this.panelOpenState = true;
     this.changeState();
+    this.route.paramMap.subscribe(params => {
+      this.scheduleId = Number(params.get('scheduleId'));
+    });
   }
 
 }

@@ -24,12 +24,17 @@ import {TimetableNavTabComponent} from './timetable-nav-tab/timetable-nav-tab.co
 import {SemesterTableComponent} from './semester-table/semester-table.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SheduleViewComponent } from './shedule-view/shedule-view.component';
+import {SnackbarService} from "../services/snackbar.service";
+import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
     children: [
-      { path: 'overview', component: OverviewComponent},
-      { path: 'view', component: SheduleViewComponent},
+      { path: 'admin', children:
+        [
+          { path: '', component: OverviewComponent },
+          { path: 'timetable/:scheduleId', component: ScheduleTableComponent},
+        ]},
       { path: '', component: TimetableNavTabComponent },
     ]},
   { path: '**', redirectTo: ''}
@@ -48,7 +53,8 @@ const routes: Routes = [
     ScheduleTableComponent,
     SemesterTableComponent,
     OverviewComponent,
-    SheduleViewComponent
+    SheduleViewComponent,
+    ScheduleDialogComponent
   ],
   imports: [
     CommonModule,
@@ -64,6 +70,6 @@ const routes: Routes = [
     MatPaginatorModule,
     MatTabsModule
   ],
-  providers: []
+  providers: [SnackbarService]
 })
 export class TimetableModule { }

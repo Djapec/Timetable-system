@@ -3,6 +3,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {SidenavToggleService} from '../../services/sidenav-toggle.service';
+import {MatDialog} from "@angular/material/dialog";
+import {ScheduleDialogComponent} from "../schedule-dialog/schedule-dialog.component";
 
 export interface PeriodicElement {
   semester: string;
@@ -32,7 +34,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class OverviewComponent implements OnInit {
   state: boolean;
 
-  constructor( private sidenavToggleService: SidenavToggleService ) { }
+  constructor(private sidenavToggleService: SidenavToggleService,
+              public dialog: MatDialog) { }
   displayedColumns: string[] = ['name', 'semester', 'createdAt', 'updatedAt', 'status' , 'actions'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -52,6 +55,10 @@ export class OverviewComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.changeState();
+  }
+
+  openCreateDialog() {
+    this.dialog.open(ScheduleDialogComponent);
   }
 
 }

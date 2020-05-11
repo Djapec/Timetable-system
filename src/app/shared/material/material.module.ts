@@ -17,6 +17,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatTabsModule} from '@angular/material/tabs';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule
   ],
   exports: [
     MatTableModule,
@@ -54,7 +56,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }

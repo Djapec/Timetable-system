@@ -12,4 +12,8 @@ export class SubjectService {
   public getSubjectsByModuleIdAndDepartmentId(semesterId: number, moduleId: number){
     return this.httpClient.get<Subject[]>(this.apiURL + `Subjects/?semesterId=${semesterId}&moduleId=${moduleId}`);
   }
+
+  public getSubjectById(subjectId: number){
+    return this.httpClient.get<Subject>(this.apiURL + `Subjects/?subjectId=${subjectId}`);
+  }
 }

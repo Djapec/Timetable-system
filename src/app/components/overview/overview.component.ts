@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
+import {SidenavToggleService} from '../../services/sidenav-toggle.service';
 
 export interface PeriodicElement {
   semester: string;
@@ -29,8 +30,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
+  state: boolean;
 
-  constructor() { }
+  constructor( private sidenavToggleService: SidenavToggleService ) { }
   displayedColumns: string[] = ['name', 'semester', 'createdAt', 'updatedAt', 'status' , 'actions'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
@@ -42,9 +44,14 @@ export class OverviewComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  changeState() {
+    this.sidenavToggleService.changeState(this.state = false);
+  }
+
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.changeState();
   }
 
 }

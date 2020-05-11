@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SidenavToggleService} from '../../services/sidenav-toggle.service';
 
 export interface PeriodicElement {
   semester: string;
@@ -24,12 +25,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class SemesterTableComponent implements OnInit {
 
+  state: boolean;
   displayedColumns: string[] = ['position', 'semester', 'data' , 'view'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  constructor(private sidenavToggleService: SidenavToggleService) { }
+
+  changeState() {
+    this.sidenavToggleService.changeState(this.state = false);
+  }
 
   ngOnInit(): void {
+    this.changeState();
   }
 
 }

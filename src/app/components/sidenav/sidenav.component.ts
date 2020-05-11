@@ -1,7 +1,9 @@
 import { Component, OnInit , NgZone} from '@angular/core';
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
-import { BreakpointObserver } from "@angular/cdk/layout";
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import {SidenavToggleService} from '../../services/sidenav-toggle.service';
+import {Router} from '@angular/router';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -12,15 +14,17 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 })
 
 export class SidenavComponent implements OnInit {
-  title = "Menu";
+  title = 'Menu';
   isScreenSmall: Observable<boolean>;
+  state = true;
 
-  constructor(breakpoints: BreakpointObserver) {
+  constructor(breakpoints: BreakpointObserver, private sidenavToggleService: SidenavToggleService, public router: Router) {
     this.isScreenSmall =
       breakpoints.observe(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)
         .pipe(map(breakpoint => breakpoint.matches));
   }
 
   ngOnInit() {
+    this.sidenavToggleService.currentState.subscribe(state => this.state = state);
   }
 }

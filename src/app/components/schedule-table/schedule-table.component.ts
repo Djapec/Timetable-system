@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {SidenavToggleService} from '../../services/sidenav-toggle.service';
 
 @Component({
   selector: 'app-schedule-table',
@@ -7,11 +8,15 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ScheduleTableComponent implements OnInit {
   panelOpenState: boolean;
+  state: boolean;
+  constructor(private sidenavToggleService: SidenavToggleService) { }
 
-  constructor() { }
-
+  changeState() {
+    this.sidenavToggleService.changeState(this.state = true);
+  }
   ngOnInit(): void {
     this.panelOpenState = true;
+    this.changeState();
   }
 
 }

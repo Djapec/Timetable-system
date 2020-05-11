@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {SidenavToggleService} from '../../services/sidenav-toggle.service';
 
 @Component({
   selector: 'app-timetable-nav-tab',
@@ -7,10 +8,14 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./timetable-nav-tab.component.css']
 })
 export class TimetableNavTabComponent implements OnInit {
+  state: boolean;
+  constructor(private root: ActivatedRoute, private sidenavToggleService: SidenavToggleService) { }
 
-  constructor(private root: ActivatedRoute) { }
-
+  changeState() {
+    this.sidenavToggleService.changeState(this.state = false);
+  }
   ngOnInit(): void {
+    this.changeState();
   }
 
 }

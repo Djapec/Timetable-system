@@ -14,6 +14,6 @@ export class LecturerService {
   }
 
   public getLecturerById(lecturerId: number){
-    return this.httpClient.get<Lecturer>(this.apiURL + `Lecturers/?lecturerId=${lecturerId}`);
+    return this.httpClient.get<Lecturer>(this.apiURL + `Lecturers/${lecturerId}`);
   }
 }

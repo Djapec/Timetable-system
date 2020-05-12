@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '../shared/material/material.module';
+import { NgPipesModule } from "ngx-pipes";
 
 import { MainContentComponent } from './main-content/main-content.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -26,6 +27,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { SheduleViewComponent } from './shedule-view/shedule-view.component';
 import {SnackbarService} from "../services/snackbar.service";
 import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
+import { DeleteTermDialogComponent } from './delete-term-dialog/delete-term-dialog.component';
+import { EditTermDialogComponent } from './edit-term-dialog/edit-term-dialog.component';
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
@@ -54,7 +57,9 @@ const routes: Routes = [
     SemesterTableComponent,
     OverviewComponent,
     SheduleViewComponent,
-    ScheduleDialogComponent
+    ScheduleDialogComponent,
+    DeleteTermDialogComponent,
+    EditTermDialogComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +73,8 @@ const routes: Routes = [
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    NgPipesModule
   ],
   providers: [SnackbarService]
 })

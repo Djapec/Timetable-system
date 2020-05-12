@@ -1,27 +1,28 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Classroom} from "../../models/classroom";
 import {FormControl, Validators} from "@angular/forms";
+import {Classroom} from "../../models/classroom";
 import {Lecturer} from "../../models/lecturer";
 import {Weekday} from "../../models/weekday";
-import { LecturerService } from "../../services/lecturer.service";
+import {TermPostObject} from "../../models/termPostObject";
+import {Subject} from "../../models/subject";
+import {Term} from "../../models/term";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {LecturerService} from "../../services/lecturer.service";
 import {WeekdayService} from "../../services/weekday.service";
 import {ClassroomService} from "../../services/classroom.service";
-import {Subject} from "../../models/subject";
 import {SubjectService} from "../../services/subject.service";
-import {TermPostObject} from "../../models/termPostObject";
-import {Term} from "../../models/term";
 import {TermService} from "../../services/term.service";
 import {SnackbarService} from "../../services/snackbar.service";
 import {Router} from "@angular/router";
+import {TermPutObject} from "../../models/termPutObject";
 
 @Component({
-  selector: 'app-term-dialog',
-  templateUrl: './term-dialog.component.html',
-  styleUrls: ['./term-dialog.component.css']
+  selector: 'app-edit-term-dialog',
+  templateUrl: './edit-term-dialog.component.html',
+  styleUrls: ['./edit-term-dialog.component.css']
 })
+export class EditTermDialogComponent implements OnInit {
 
-export class TermDialogComponent implements OnInit {
   classroomsControl = new FormControl('', Validators.required);
   lecturersControl = new FormControl('', Validators.required);
   timepickerControl = new FormControl('', Validators.required);
@@ -36,13 +37,13 @@ export class TermDialogComponent implements OnInit {
   lecturers: Lecturer[];
   weekdays: Weekday[];
 
-  termPostObject: TermPostObject;
+  termPutObject: TermPutObject;
   subject: Subject;
   term: Term;
 
   numbers: number[] = [1, 2, 3, 4, 5];
 
-  constructor(public dialogRef: MatDialogRef<TermDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<EditTermDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public ids: any,
               private lecturerService: LecturerService,
               private weekdayService: WeekdayService,
@@ -57,7 +58,8 @@ export class TermDialogComponent implements OnInit {
   }
 
   onYesClick(): void{
-    this.termPostObject = {
+    this.termPutObject = {
+      id: this.ids.termId,
       numberOfLectures: 0,
       numberOfExercises: 0,
       numberOfLabExercises: 0,
@@ -74,28 +76,28 @@ export class TermDialogComponent implements OnInit {
 
     if(this.lectureTypeControl.value == 1)
     {
-      this.termPostObject.numberOfLectures = this.numberOfLecturesTypeControl.value;
+      this.termPutObject.numberOfLectures = this.numberOfLecturesTypeControl.value;
     }
     else if(this.lectureTypeControl.value == 2)
     {
-      this.termPostObject.numberOfExercises = this.numberOfLecturesTypeControl.value;
+      this.termPutObject.numberOfExercises = this.numberOfLecturesTypeControl.value;
     }
     else if(this.lectureTypeControl.value == 3)
     {
-      this.termPostObject.numberOfLabExercises = this.numberOfLecturesTypeControl.value;
+      this.termPutObject.numberOfLabExercises = this.numberOfLecturesTypeControl.value;
     }
 
-    this.termService.postTerm(this.termPostObject).subscribe((data) => {
-      this.term = data;
-      if(this.term != null)
-      {
-        this.snackbarService.openSnackBar("Term added!", "Hurray!");
-        location.reload();
-      }
-    },
+    this.termService.putTerm(this.termPutObject).subscribe((data) => {
+        this.term = data;
+        if(this.term != null)
+        {
+          this.snackbarService.openSnackBar("Term updated!", "Hurray!");
+          location.reload();
+        }
+      },
       (error) => {
-      console.log(error);
-      this.snackbarService.openSnackBar(`${error.error} + - ${error.statusText}`);
+        console.log(error);
+        this.snackbarService.openSnackBar(`${error.error} + - ${error.statusText}`);
       })
     this.dialogRef.close();
   }
@@ -116,6 +118,28 @@ export class TermDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.termService.getTermById(this.ids.termId).subscribe((data) => {
+      this.classroomsControl.setValue(data.classroomId);
+      this.lecturersControl.setValue(data.lecturerId);
+      this.timepickerControl.setValue(data.startTime);
+      this.timepickerEndControl.setValue(data.endTime);
+      this.weekdayControl.setValue(data.weekdayId);
+      if(data.numberOfLectures > 0)
+      {
+        this.lectureTypeControl.setValue(1);
+      }
+      else if (data.numberOfExercises > 0)
+      {
+        this.lectureTypeControl.setValue(2);
+      }
+      else
+        {
+          this.lectureTypeControl.setValue(3);
+      }
+      this.numberOfLecturesTypeControl.setValue(data.numberOfLectures);
+      this.groupControl.setValue(data.group);
+    });
+
     this.subjectService.getSubjectById(this.ids.subjectId).subscribe((data) => {
       this.subject = data;});
     this.lecturerService.getLecturersBySubject(this.ids.subjectId,this.ids.moduleId,this.ids.semesterId).subscribe((data)=>{
@@ -125,5 +149,4 @@ export class TermDialogComponent implements OnInit {
     this.classroomService.getClassrooms().subscribe((data)=>{
       this.classrooms = data});
   }
-
 }

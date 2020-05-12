@@ -1,6 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SidenavToggleService} from '../../services/sidenav-toggle.service';
 import {ActivatedRoute} from "@angular/router";
+import {TermService} from "../../services/term.service";
+import {Term} from "../../models/term";
+import {WeekdayService} from "../../services/weekday.service";
+import {SubjectService} from "../../services/subject.service";
+import {Weekday} from "../../models/weekday";
+import { Subject } from "../../models/subject";
+import {LecturerService} from "../../services/lecturer.service";
+import {Lecturer} from "../../models/lecturer";
+import {MatDialog} from "@angular/material/dialog";
+import {DeleteTermDialogComponent} from "../delete-term-dialog/delete-term-dialog.component";
+import {EditTermDialogComponent} from "../edit-term-dialog/edit-term-dialog.component";
 
 @Component({
   selector: 'app-schedule-table',
@@ -9,11 +20,22 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ScheduleTableComponent implements OnInit {
 
-  constructor(private sidenavToggleService: SidenavToggleService, private route: ActivatedRoute) { }
+  constructor(private sidenavToggleService: SidenavToggleService,
+              private route: ActivatedRoute,
+              private termService: TermService,
+              private weekdayService: WeekdayService,
+              private subjectService: SubjectService,
+              private lecturerService: LecturerService,
+              public dialog: MatDialog) { }
 
   scheduleId: number;
   panelOpenState: boolean;
   state: boolean;
+  weekday: Weekday;
+  subject: Subject;
+  lecturer: Lecturer;
+
+  terms: Term[];
 
   changeState() {
     this.sidenavToggleService.changeState(this.state = true);
@@ -21,9 +43,23 @@ export class ScheduleTableComponent implements OnInit {
   ngOnInit(): void {
     this.panelOpenState = true;
     this.changeState();
-    this.route.paramMap.subscribe(params => {
-      this.scheduleId = Number(params.get('scheduleId'));
+    this.scheduleId = +this.route.snapshot.params.scheduleId;
+
+    this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
+    {
+      this.terms = data;
+    })
+  }
+
+  openDeleteDialog(termId: number): void {
+    const dialogRef = this.dialog.open(DeleteTermDialogComponent, {
+      data: {termId}
     });
   }
 
+  openUpdateDialog(termId: number, subjectId: number, semesterId: number, moduleId: number, scheduleId: number): void {
+    const dialogRef = this.dialog.open(EditTermDialogComponent, {
+      data: {termId, subjectId, semesterId, moduleId, scheduleId}
+    });
+  }
 }

@@ -15,7 +15,11 @@ import {SnackbarService} from "../../services/snackbar.service";
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.css']
 })
-export class TreeComponent {
+export class TreeComponent implements OnInit{
+  modules: Module[];
+  subjects: Subject[];
+  schedule: Schedule;
+  scheduleId: number;
   panelOpenState = false;
   constructor(public dialog: MatDialog,
               private moduleService: ModuleService,
@@ -23,41 +27,36 @@ export class TreeComponent {
               private scheduleService: ScheduleService,
               private snackbarService: SnackbarService,
               private route: ActivatedRoute,
-              private router: Router) {
-  }
-
-  modules: Module[];
-  subjects: Subject[];
-  schedule: Schedule;
-  scheduleId: number;
+              private router: Router) {}
 
   ngOnInit(): void {
     this.scheduleId = +this.route.children[0].firstChild.snapshot.params.scheduleId;
 
-    this.scheduleService.getScheduleById(this.scheduleId).subscribe((data) =>
-    {
+    this.scheduleService.getScheduleById(this.scheduleId).subscribe((data) => {
       this.schedule = data;
-      console.log(this.schedule);
-    });
-
-    if(this.schedule == null)
-    {
-      this.snackbarService.openSnackBar(`Schedule with id ${this.scheduleId} don\'t exist!`);
-    }
-
-    this.moduleService.getModulesByDepartmentId(this.schedule.departmentId).subscribe((data)=>{
-      this.modules = data});
+      if(this.schedule === null)
+      {
+        this.snackbarService.openSnackBar(`Schedule with id ${this.scheduleId} don\'t exist!`);
+      }
+      this.moduleService.getModulesByDepartmentId(this.schedule.departmentId).subscribe((data)=>{
+        this.modules = data;
+      });
+    },
+      (error) => {
+      this.snackbarService.openSnackBar(error.message);
+      this.router.navigate(['../admin/'])
+      });
   }
 
   getSubjects(semesterId: number, moduleId: number)
   {
     this.subjectService.getSubjectsByModuleIdAndDepartmentId(semesterId, moduleId).subscribe((data)=>{
-      this.subjects = data});
+      this.subjects = data;});
   }
 
-  openDialog(subjectId: number, moduleId: number, semesterId: number) {
+  openDialog(subjectId: number, moduleId: number, semesterId: number, scheduleId: number) {
     this.dialog.open(TermDialogComponent, {
-      data: { subjectId, moduleId, semesterId }
+      data: { subjectId, moduleId, semesterId, scheduleId }
     });
   }
 }

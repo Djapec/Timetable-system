@@ -9,6 +9,7 @@ import {Semester} from "../../models/semester";
 import {SemesterService} from "../../services/semester.service";
 import {DepartmentService} from "../../services/department.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {WeekdayService} from "../../services/weekday.service";
 
 @Component({
   selector: 'app-schedule-dialog',
@@ -70,7 +71,7 @@ export class ScheduleDialogComponent implements OnInit {
         this.semesters = data;
       },
       (error) => {
-        this.snackbarService.openSnackBar(error);
+        this.snackbarService.openSnackBar(error.messageText);
       });
   }
 

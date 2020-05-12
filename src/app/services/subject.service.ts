@@ -14,6 +14,6 @@ export class SubjectService {
   }
 
   public getSubjectById(subjectId: number){
-    return this.httpClient.get<Subject>(this.apiURL + `Subjects/?subjectId=${subjectId}`);
+    return this.httpClient.get<Subject>(this.apiURL + `Subjects/${subjectId}`);
   }
 }

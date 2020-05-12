@@ -10,7 +10,7 @@
     </mat-expansion-panel-header>
     <mat-list>
       <div *ngFor="let subject of subjects">
-        <mat-list-item (click)="openDialog(subject.id, module.id, schedule.semesterId)">{{subject.name}}</mat-list-item>
+        <mat-list-item><span (click)="openDialog(subject.id, module.id, schedule.semesterId, schedule.id)">{{subject.name}}</span></mat-list-item>
         <mat-divider></mat-divider>
       </div>
     </mat-list>

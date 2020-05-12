@@ -1,24 +1,16 @@
-export class Term {
+export class TermPutObject {
   id: number;
   startTime: string;
   endTime: string;
   group: number;
-  module: string;
-  optionalSubjectNumber: number;
   numberOfLectures: number;
   numberOfExercises: number;
   numberOfLabExercises: number;
+  weekdayId: number;
   classroomId: number;
-  classroom: string;
+  scheduleId: number;
   subjectId: number;
   moduleId: number;
   semesterId: number;
-  scheduleId: number;
   lecturerId: number;
-  slotId: number;
-  lecturerFullName: string;
-  subject: string;
-  weekday: string;
-  weekdayId: number;
-  isOptional: boolean;
 }

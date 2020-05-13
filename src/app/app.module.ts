@@ -8,6 +8,8 @@ import { LayoutModule } from "@angular/cdk/layout";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { HttpClientModule } from "@angular/common/http";
 import {TimetableModule} from './components/timetable.module';
+import {StyleManagerService} from "./services/style-manager.service";
+import {ThemeService} from "./services/theme.service";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import {TimetableModule} from './components/timetable.module';
     HttpClientModule,
     TimetableModule
   ],
-  providers: [],
+  providers: [StyleManagerService, ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

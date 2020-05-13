@@ -6,4 +6,6 @@
   </button>
   <a [routerLink]="[' ']"> Timetable </a>
   <a [routerLink]="['/admin/']"> Admin </a>
+  <app-theme-palette style="margin-left: auto"  [options]="options$ | async"
+                      (themeChange)="themeChangeHandler($event)">></app-theme-palette>
 </mat-toolbar>

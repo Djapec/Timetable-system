@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '../shared/material/material.module';
+import { NgPipesModule } from "ngx-pipes";
+import { ExportAsModule } from "ngx-export-as";
 
 import { MainContentComponent } from './main-content/main-content.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -24,12 +26,23 @@ import {TimetableNavTabComponent} from './timetable-nav-tab/timetable-nav-tab.co
 import {SemesterTableComponent} from './semester-table/semester-table.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SheduleViewComponent } from './shedule-view/shedule-view.component';
+import {SnackbarService} from "../services/snackbar.service";
+import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
+import { DeleteTermDialogComponent } from './delete-term-dialog/delete-term-dialog.component';
+import { EditTermDialogComponent } from './edit-term-dialog/edit-term-dialog.component';
+import { EditScheduleDialogComponent } from './edit-schedule-dialog/edit-schedule-dialog.component';
+import { DeleteScheduleDialogComponent } from './delete-schedule-dialog/delete-schedule-dialog.component';
+import { ExportFileComponent } from './export-file/export-file.component';
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
     children: [
-      { path: 'overview', component: OverviewComponent},
-      { path: 'view', component: SheduleViewComponent},
+      { path: 'timetable/:scheduleId', component: SheduleViewComponent },
+      { path: 'admin', children:
+        [
+          { path: '', component: OverviewComponent },
+          { path: 'timetable/:scheduleId', component: ScheduleTableComponent},
+        ]},
       { path: '', component: TimetableNavTabComponent },
     ]},
   { path: '**', redirectTo: ''}
@@ -48,7 +61,13 @@ const routes: Routes = [
     ScheduleTableComponent,
     SemesterTableComponent,
     OverviewComponent,
-    SheduleViewComponent
+    SheduleViewComponent,
+    ScheduleDialogComponent,
+    DeleteTermDialogComponent,
+    EditTermDialogComponent,
+    EditScheduleDialogComponent,
+    DeleteScheduleDialogComponent,
+    ExportFileComponent
   ],
   imports: [
     CommonModule,
@@ -62,8 +81,10 @@ const routes: Routes = [
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    NgPipesModule,
+    ExportAsModule
   ],
-  providers: []
+  providers: [SnackbarService]
 })
 export class TimetableModule { }

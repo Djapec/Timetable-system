@@ -3,26 +3,15 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {SidenavToggleService} from '../../services/sidenav-toggle.service';
-
-export interface PeriodicElement {
-  semester: string;
-  name: string;
-  position: number;
-  createdAt: string;
-  updatedAt: string;
-  status: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Informacione tehnologije', semester: 'I', createdAt: '2/2/2020', updatedAt: '3/3/2000', status: 'Active'},
-  {position: 2, name: 'Informacione tehnologije', semester: 'II', createdAt: '2/2/2020', updatedAt: '3/3/2000', status: 'Active'},
-  {position: 3, name: 'Informacione tehnologije', semester: 'III', createdAt: '2/2/2020', updatedAt: '3/3/2000', status: 'Active'},
-  {position: 4, name: 'Informacione tehnologije', semester: 'IV', createdAt: '2/2/2020', updatedAt: '3/3/2000', status: 'Active'},
-  {position: 5, name: 'Informacione tehnologije', semester: 'V', createdAt: '2/2/2020', updatedAt: '3/3/2000', status: 'Active'},
-  {position: 6, name: 'Informacione tehnologije', semester: 'VI', createdAt: '2/2/2020', updatedAt: '3/3/2000', status: 'Active'},
-  {position: 7, name: 'Informacione tehnologije', semester: 'VII', createdAt: '2/2/2020', updatedAt: '3/3/2000', status: 'Active'},
-  {position: 8, name: 'Informacione tehnologije', semester: 'VIII', createdAt: '2/2/2020', updatedAt: '3/3/2000', status: 'Active'}
-];
+import {MatDialog} from "@angular/material/dialog";
+import {ScheduleDialogComponent} from "../schedule-dialog/schedule-dialog.component";
+import {ScheduleService} from "../../services/schedule.service";
+import {Schedule} from "../../models/schedule";
+import {SnackbarService} from "../../services/snackbar.service";
+import {EditTermDialogComponent} from "../edit-term-dialog/edit-term-dialog.component";
+import {EditScheduleDialogComponent} from "../edit-schedule-dialog/edit-schedule-dialog.component";
+import {DeleteScheduleDialogComponent} from "../delete-schedule-dialog/delete-schedule-dialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-overview',
@@ -32,9 +21,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class OverviewComponent implements OnInit {
   state: boolean;
 
-  constructor( private sidenavToggleService: SidenavToggleService ) { }
-  displayedColumns: string[] = ['name', 'semester', 'createdAt', 'updatedAt', 'status' , 'actions'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  constructor(private sidenavToggleService: SidenavToggleService,
+              public dialog: MatDialog,
+              public dialogEdit: MatDialog,
+              private scheduleService: ScheduleService,
+              private snackbarService: SnackbarService,
+              private router: Router) { }
+  displayedColumns: string[] = ['id', 'name', 'departmentId', 'semesterId', 'isActive' , 'actions'];
+  dataSource = new MatTableDataSource();
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -51,7 +45,44 @@ export class OverviewComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.scheduleService.getSchedules().subscribe(data => {
+      this.dataSource.data = data;
+    });
     this.changeState();
   }
 
+  openCreateDialog() {
+    this.dialog.open(ScheduleDialogComponent);
+  }
+
+  changeScheduleStatus(schedule: Schedule)
+  {
+    this.scheduleService.putSchedule(schedule.id, schedule.name, !schedule.isActive).subscribe((data) =>
+    {
+      this.snackbarService.openSnackBar(`Status change to ${data.isActive}`);
+      location.reload();
+    },
+      (error) =>
+      {
+        this.snackbarService.openSnackBar(`${error.error} + - ${error.statusText}`);
+      });
+  }
+
+  openEditScheduleDialog(schedule: Schedule)
+  {
+    const dialogRef = this.dialog.open(EditScheduleDialogComponent, {
+      data: schedule
+    });
+  }
+
+  openDeleteScheduleDialog(schedule: Schedule)
+  {
+    const dialogEditRef = this.dialogEdit.open(DeleteScheduleDialogComponent, {
+      data: schedule
+    });
+  }
+
+  viewTimetableEdit(schedule: Schedule) {
+    this.router.navigate(['admin/timetable/', schedule.id]);
+  }
 }

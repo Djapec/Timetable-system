@@ -6,7 +6,7 @@
     <mat-toolbar color="primary">
       {{title}}
     </mat-toolbar>
-    <app-tree></app-tree>
+    <app-tree *ngIf="router.url.includes('admin/timetable/')"></app-tree>
   </mat-sidenav>
   <div class="app-sidenav-content">
     <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>

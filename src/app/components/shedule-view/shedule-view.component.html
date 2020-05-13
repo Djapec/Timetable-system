@@ -1,109 +1,35 @@
-<div class="schedule">
-  <div style="text-align: right">
-  <button mat-raised-button  class="download-button" >
-    <!--<mat-icon>download</mat-icon>-->
-    Download
-  </button>
+ <div class="schedule">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div class="header-text" style="float: left">
+          <mat-card-title >{{schedule.name}}</mat-card-title>
+          <mat-card-subtitle >{{schedule.isActive? "Active" : "Inactive"}}</mat-card-subtitle>
+        </div>
+        <div style="text-align: right">
+          <button mat-raised-button  class="download-button"(click)="openBottomSheet()" >
+            <!--<mat-icon>download</mat-icon>-->
+            Download
+          </button>
+        </div>
+      </mat-card-header>
+      <mat-card-content id="schedule-content">
+        <mat-expansion-panel class="day-panel" [expanded]="true" *ngFor="let term of terms | groupBy: 'weekday' | pairs">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h3 class="day-slot"> {{(term[0])}} </h3>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-card  class="class-card" [style]="'background-color:' + colors[val.weekdayId].color"  *ngFor="let val of term[1]">
+            <div class="class class-1 ">
+              <h4 class="subject-title"> {{val.subject}} ({{val.numberOfLectures}}+{{val.numberOfExercises}}+{{val.numberOfLabExercises}})</h4>
+              <span class="class-time">{{val.startTime}}</span>
+              <span class="class-room"> {{val.classroom}} </span>
+              <span class="class-professor">{{val.lecturerFullName}}</span>
+            </div>
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-card-content>
+    </mat-card>
   </div>
-<mat-expansion-panel class="day-panel" [expanded]="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <h3 class="day-slot"> Tuesday </h3>
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  <mat-card class="class-card">
-    <div class="class class-1 ">
-      <h4 class="subject-title"> Class Title (2+0)</h4>
-      <span class="class-time"> 9:00am </span>
-      <span class="class-room"> 17 </span>
-      <span class="class-professor"> Professor Name </span>
-    </div>
-  </mat-card>
-
-  <mat-card class="class-card">
-    <div class="class class-1 ">
-      <h4 class="subject-title"> Class Title (2+0)</h4>
-      <span class="class-time"> 9:00am </span>
-      <span class="class-room"> 17 </span>
-      <span class="class-professor"> Professor Name </span>
-    </div>
-  </mat-card>
-</mat-expansion-panel>
-
-<mat-expansion-panel class="day-panel"[expanded]="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <h3 class="day-slot"> Wednesday </h3>
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  <mat-card class="class-card">
-    <div class="class class-1 ">
-      <h4 class="subject-title"> Class Title (2+0)</h4>
-      <span class="class-time"> 9:00am </span>
-      <span class="class-room"> 17 </span>
-      <span class="class-professor"> Professor Name </span>
-    </div>
-  </mat-card>
-
-  <mat-card class="class-card">
-    <div class="class class-1 ">
-      <h4 class="subject-title"> Savremene softerske arhitekture (2+0)</h4>
-      <span class="class-time"> 9:00am  </span>
-      <span class="class-room"> 213 </span>
-      <span class="class-professor"> Vladimir Mladenovic </span>
-    </div>
-  </mat-card>
-</mat-expansion-panel>
-
-<mat-expansion-panel class="day-panel" [expanded]="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <h3 class="day-slot"> Thursday </h3>
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  <mat-card class="class-card">
-    <div class="class class-1 ">
-      <h4 class="subject-title"> Class Title (2+0)</h4>
-      <span class="class-time"> 9:00am </span>
-      <span class="class-room"> 17 </span>
-      <span class="class-professor"> Professor Name </span>
-    </div>
-  </mat-card>
-
-  <mat-card class="class-card">
-    <div class="class class-1 ">
-      <h4 class="subject-title"> Savremene softerske arhitekture (2+0)</h4>
-      <span class="class-time"> 9:00am  </span>
-      <span class="class-room"> 213 </span>
-      <span class="class-professor"> Vladimir Mladenovic </span>
-    </div>
-  </mat-card>
-</mat-expansion-panel>
-
-<mat-expansion-panel class="day-panel"[expanded]="true">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <h3 class="day-slot"> Friday </h3>
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  <mat-card class="class-card">
-    <div class="class class-1 ">
-      <h4 class="subject-title"> Class Title (2+0)</h4>
-      <span class="class-time"> 9:00am </span>
-      <span class="class-room"> 17 </span>
-      <span class="class-professor"> Professor Name </span>
-    </div>
-  </mat-card>
-
-  <mat-card class="class-card">
-    <div class="class class-1 ">
-      <h4 class="subject-title"> Savremene softerske arhitekture (2+0)</h4>
-      <span class="class-time"> 9:00am  </span>
-      <span class="class-room"> 213 </span>
-      <span class="class-professor"> Vladimir Mladenovic </span>
-    </div>
-  </mat-card>
-</mat-expansion-panel>
-</div>
 
 

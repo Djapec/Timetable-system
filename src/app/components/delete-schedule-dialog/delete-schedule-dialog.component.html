@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete schedule!</h1>
+<div mat-dialog-content>
+  <p>Do you want to delete schedule with id {{schedule.id}}?</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onYesClick()" cdkFocusInitial>Yes</button>
+</div>

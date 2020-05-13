@@ -1,22 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SidenavToggleService} from '../../services/sidenav-toggle.service';
-
-export interface PeriodicElement {
-  semester: string;
-  position: number;
-  date: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, semester: 'I', date: '2/2/2020'},
-  {position: 2, semester: 'II', date: '2/2/2020'},
-  {position: 3, semester: 'III', date: '2/2/2020'},
-  {position: 4, semester: 'IV', date: '2/2/2020'},
-  {position: 5, semester: 'V', date: '2/2/2020'},
-  {position: 6, semester: 'VI', date: '2/2/2020'},
-  {position: 7, semester: 'VII', date: '2/2/2020'},
-  {position: 8, semester: 'VIII', date: '2/2/2020'}
-];
+import {ScheduleService} from "../../services/schedule.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-semester-table',
@@ -24,18 +9,23 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./semester-table.component.css']
 })
 export class SemesterTableComponent implements OnInit {
+  @Input() departmentId: number;
+  dataSource = new MatTableDataSource();
 
   state: boolean;
-  displayedColumns: string[] = ['position', 'semester', 'data' , 'view'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['id', 'departmentId', 'semesterId', 'isActive', 'view'];
 
-  constructor(private sidenavToggleService: SidenavToggleService) { }
+  constructor(private sidenavToggleService: SidenavToggleService,
+              private scheduleService: ScheduleService) { }
 
   changeState() {
     this.sidenavToggleService.changeState(this.state = false);
   }
 
   ngOnInit(): void {
+    this.scheduleService.getScheduleByDepartmentId(this.departmentId).subscribe((data) => {
+      this.dataSource.data = data;
+    });
     this.changeState();
   }
 

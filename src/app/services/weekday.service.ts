@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Lecturer} from "../models/lecturer";
 import {HttpClient} from "@angular/common/http";
 import {Weekday} from "../models/weekday";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,11 @@ export class WeekdayService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public getWeekdayById(weekdayId: number){
+    return this.httpClient.get<Weekday>(this.apiURL + `Weekdays/${weekdayId}`);
+  }
+
   public getWeekdays(){
-    return this.httpClient.get<Weekday[]>(this.apiURL + `Weekday/`);
+    return this.httpClient.get<Weekday[]>(this.apiURL + `Weekdays/`);
   }
 }

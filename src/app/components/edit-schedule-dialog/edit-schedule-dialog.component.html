@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Schedule: {{schedule.name}}</h1>
+<div mat-dialog-content class="dialog-edit">
+  <br>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [formControl]="nameFormControl">
+    <mat-hint>Change schedule name!</mat-hint>
+    <mat-error *ngIf="nameFormControl.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-checkbox [formControl]="isActiveFormControl">IsActive?</mat-checkbox>
+  <mat-error *ngIf="isActiveFormControl.hasError('required')">
+    Status is <strong>required</strong>
+  </mat-error>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onYesClick()" [disabled]="!isFormValid()" cdkFocusInitial color="primary">Ok</button>
+</div>

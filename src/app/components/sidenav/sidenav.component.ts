@@ -18,7 +18,7 @@ export class SidenavComponent implements OnInit {
   isScreenSmall: Observable<boolean>;
   state = true;
 
-  constructor(breakpoints: BreakpointObserver, private sidenavToggleService: SidenavToggleService, public router: Router) {
+  constructor(breakpoints: BreakpointObserver, public router: Router, private sidenavToggleService: SidenavToggleService) {
     this.isScreenSmall =
       breakpoints.observe(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`)
         .pipe(map(breakpoint => breakpoint.matches));

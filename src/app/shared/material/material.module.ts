@@ -20,6 +20,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatBadgeModule } from "@angular/material/badge";
+import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { MatBadgeModule } from "@angular/material/badge";
     MatTabsModule,
     MatSnackBarModule,
     MatChipsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatBottomSheetModule
   ],
   exports: [
     MatTableModule,
@@ -63,7 +65,8 @@ import { MatBadgeModule } from "@angular/material/badge";
     MatRadioModule,
     MatSnackBarModule,
     MatChipsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatBottomSheetModule
   ]
 })
 export class MaterialModule { }

@@ -4,6 +4,12 @@ import {ActivatedRoute} from "@angular/router";
 import {ScheduleService} from "../../services/schedule.service";
 import {Schedule} from "../../models/schedule";
 import {SnackbarService} from "../../services/snackbar.service";
+import {TermService} from "../../services/term.service";
+import {Term} from "../../models/term";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {ExportFileComponent} from "../export-file/export-file.component";
+
+class Color {id: number; color: string}
 
 @Component({
   selector: 'app-shedule-view',
@@ -15,11 +21,24 @@ export class SheduleViewComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private scheduleService: ScheduleService,
               private snackbarService: SnackbarService,
-              private sidenavToggleService: SidenavToggleService ) { }
+              private sidenavToggleService: SidenavToggleService,
+              private termService: TermService,
+              private bottomSheet: MatBottomSheet) { }
 
   state: boolean;
   scheduleId: number;
   schedule: Schedule;
+  terms: Term[];
+
+  colors: Color[] = [
+    {id: 1, color: "#5c6bc0"},
+    {id: 2, color: "#8e99f3"},
+    {id: 3, color: "#3f51b5"},
+    {id: 4, color: "#7986cb"},
+    {id: 5, color: "#aab6fe"},
+    {id: 6, color: "#49599a"},
+    {id: 7, color: "#9fa8da"},
+  ];
 
   changeState() {
     this.sidenavToggleService.changeState(this.state = false);
@@ -29,17 +48,18 @@ export class SheduleViewComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.scheduleId = Number(params.get('scheduleId'));
     });
-  }
-
-  LoadSchedule(scheduleId: number)
-  {
-    this.scheduleService.getScheduleById(scheduleId).subscribe((data)=>{
-      this.schedule = data});
-
-    if(this.schedule == null)
+    this.changeState();
+    this.scheduleId = +this.route.snapshot.params.scheduleId;
+    this.scheduleService.getScheduleById(this.scheduleId).subscribe((data) =>{
+      this.schedule = data;
+    });
+    this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
     {
-      this.snackbarService.openSnackBar("Schedule is not found!");
-    }
+      this.terms = data;
+    })
   }
 
+  openBottomSheet() {
+    this.bottomSheet.open(ExportFileComponent, {data: this.scheduleId});
+  }
 }

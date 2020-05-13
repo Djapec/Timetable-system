@@ -4,6 +4,7 @@
 }
 .download-button{
 margin-bottom: 30px;
+  float: right;
 }
 .class-card{
   margin-top: 5px;
@@ -45,6 +46,12 @@ margin-bottom: 30px;
   grid-area: room;
   justify-self: end;
   place-self: end;
+}
+.mat-card-header{
+  display: flow-root;
+}
+.mat-card-header-text{
+  float: left!important;
 }
 
 @media only screen and (min-width: 820px) {

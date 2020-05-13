@@ -37,10 +37,7 @@ export class ScheduleTableComponent implements OnInit {
   subject: Subject;
   lecturer: Lecturer;
   schedule: Schedule;
-
   terms: Term[];
-
-
 
   colors: Color[] = [
     {id: 1, color: "#5c6bc0"},
@@ -51,7 +48,6 @@ export class ScheduleTableComponent implements OnInit {
     {id: 6, color: "#49599a"},
     {id: 7, color: "#9fa8da"},
     ];
-
 
   changeState() {
     this.sidenavToggleService.changeState(this.state = true);

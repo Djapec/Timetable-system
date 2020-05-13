@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '../shared/material/material.module';
 import { NgPipesModule } from "ngx-pipes";
+import { ExportAsModule } from "ngx-export-as";
 
 import { MainContentComponent } from './main-content/main-content.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -31,10 +32,12 @@ import { DeleteTermDialogComponent } from './delete-term-dialog/delete-term-dial
 import { EditTermDialogComponent } from './edit-term-dialog/edit-term-dialog.component';
 import { EditScheduleDialogComponent } from './edit-schedule-dialog/edit-schedule-dialog.component';
 import { DeleteScheduleDialogComponent } from './delete-schedule-dialog/delete-schedule-dialog.component';
+import { ExportFileComponent } from './export-file/export-file.component';
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
     children: [
+      { path: 'timetable/:scheduleId', component: SheduleViewComponent },
       { path: 'admin', children:
         [
           { path: '', component: OverviewComponent },
@@ -63,7 +66,8 @@ const routes: Routes = [
     DeleteTermDialogComponent,
     EditTermDialogComponent,
     EditScheduleDialogComponent,
-    DeleteScheduleDialogComponent
+    DeleteScheduleDialogComponent,
+    ExportFileComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +82,8 @@ const routes: Routes = [
     MatSortModule,
     MatPaginatorModule,
     MatTabsModule,
-    NgPipesModule
+    NgPipesModule,
+    ExportAsModule
   ],
   providers: [SnackbarService]
 })

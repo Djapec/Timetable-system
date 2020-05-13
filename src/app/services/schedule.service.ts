@@ -14,6 +14,10 @@ export class ScheduleService {
     return this.httpClient.get<Schedule>(this.apiURL + `Schedules/${scheduleId}`);
   }
 
+  public getScheduleByDepartmentId(departmentId: number): Observable<Schedule[]>{
+    return this.httpClient.get<Schedule[]>(this.apiURL + `Schedules/by_department?departmentId=${departmentId}`);
+  }
+
   public getSchedules()
   {
     return this.httpClient.get<Schedule[]>(this.apiURL + `Schedules/all`);

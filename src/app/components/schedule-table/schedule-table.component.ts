@@ -12,6 +12,10 @@ import {Lecturer} from "../../models/lecturer";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteTermDialogComponent} from "../delete-term-dialog/delete-term-dialog.component";
 import {EditTermDialogComponent} from "../edit-term-dialog/edit-term-dialog.component";
+import {Schedule} from "../../models/schedule";
+import {ScheduleService} from "../../services/schedule.service";
+
+class Color {id: number; color: string}
 
 @Component({
   selector: 'app-schedule-table',
@@ -23,9 +27,7 @@ export class ScheduleTableComponent implements OnInit {
   constructor(private sidenavToggleService: SidenavToggleService,
               private route: ActivatedRoute,
               private termService: TermService,
-              private weekdayService: WeekdayService,
-              private subjectService: SubjectService,
-              private lecturerService: LecturerService,
+              private scheduleService: ScheduleService,
               public dialog: MatDialog) { }
 
   scheduleId: number;
@@ -34,8 +36,22 @@ export class ScheduleTableComponent implements OnInit {
   weekday: Weekday;
   subject: Subject;
   lecturer: Lecturer;
+  schedule: Schedule;
 
   terms: Term[];
+
+
+
+  colors: Color[] = [
+    {id: 1, color: "#5c6bc0"},
+    {id: 2, color: "#8e99f3"},
+    {id: 3, color: "#3f51b5"},
+    {id: 4, color: "#7986cb"},
+    {id: 5, color: "#aab6fe"},
+    {id: 6, color: "#49599a"},
+    {id: 7, color: "#9fa8da"},
+    ];
+
 
   changeState() {
     this.sidenavToggleService.changeState(this.state = true);
@@ -44,7 +60,9 @@ export class ScheduleTableComponent implements OnInit {
     this.panelOpenState = true;
     this.changeState();
     this.scheduleId = +this.route.snapshot.params.scheduleId;
-
+    this.scheduleService.getScheduleById(this.scheduleId).subscribe((data) =>{
+      this.schedule = data;
+    });
     this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
     {
       this.terms = data;

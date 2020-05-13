@@ -18,6 +18,8 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatBadgeModule } from "@angular/material/badge";
 
 @NgModule({
   imports: [
@@ -38,7 +40,9 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatCheckboxModule,
     MatRadioModule,
     MatTabsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule,
+    MatBadgeModule
   ],
   exports: [
     MatTableModule,
@@ -57,7 +61,9 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule,
+    MatBadgeModule
   ]
 })
 export class MaterialModule { }

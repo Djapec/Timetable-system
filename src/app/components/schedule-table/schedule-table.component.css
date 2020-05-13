@@ -6,7 +6,6 @@
 .class-card{
   margin-top: 5px;
   margin-bottom: 7px;
-  background-color: #7ebac5;
 }
 .day-class-slot{
   background-color: antiquewhite;
@@ -45,14 +44,23 @@
   place-self: end;
 }
 .delete-button{
+  color: black!important;
   grid-area: delete;
   place-self: center;
   justify-self: end;
 }
 .edit-button{
+  color: black!important;
   grid-area: edit;
   place-self: center;
   justify-self: end;
+}
+.example-header-image {
+  background-size: cover;
+  float: left;
+}
+.mat-button-wrapper{
+  color: white!important;
 }
 
 @media only screen and (min-width: 820px) {

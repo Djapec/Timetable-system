@@ -16,6 +16,11 @@ export class ScheduleService {
 
   public getSchedules()
   {
+    return this.httpClient.get<Schedule[]>(this.apiURL + `Schedules/all`);
+  }
+
+  public getActiveSchedules()
+  {
     return this.httpClient.get<Schedule[]>(this.apiURL + `Schedules/`);
   }
 
@@ -25,5 +30,16 @@ export class ScheduleService {
         'Content-Type' : 'application/json; charset=UTF-8'
       }
     });
+  }
+
+  public putSchedule(scheduleId: number, name: string, isActive: boolean): Observable<Schedule> {
+    return this.httpClient.put<Schedule>(this.apiURL + `Schedules`, { id: scheduleId, name: name, isActive: isActive }, {
+      headers: {
+        'Content-Type' : 'application/json; charset=UTF-8'
+      }
+    });
+  }
+  public deleteSchedule(scheduleId: number){
+    return this.httpClient.delete(this.apiURL + `Schedules/${scheduleId}`);
   }
 }

@@ -72,7 +72,7 @@
     <mat-error *ngIf="numberOfLecturesTypeControl.hasError('required')">Please choose an number of lectures</mat-error>
     <mat-hint>{{numberOfLecturesTypeControl.value?.sound}}</mat-hint>
   </mat-form-field>
-</div>
+
 <mat-form-field>
   <mat-label>Select group</mat-label>
   <mat-select [formControl]="groupControl" disabled>
@@ -84,7 +84,8 @@
   <mat-error *ngIf="groupControl.hasError('required')">Please choose an group</mat-error>
   <mat-hint>{{groupControl.value?.sound}}</mat-hint>
 </mat-form-field>
-<br>
+  <br>
+</div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
   <button mat-button (click)="onYesClick()" [disabled]="!isFormValid()" cdkFocusInitial color="primary">Ok</button>

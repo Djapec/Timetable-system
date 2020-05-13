@@ -1,12 +1,13 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
 }
 .timepicker-overlay{
   z-index: 1000!important;
 }
-
 .timepicker__header {
   background-color: #3f51b5 !important;
 }
@@ -15,12 +16,12 @@ body {
   background-color: #3f51b5 !important;
 }
 .clock-face__clock-hand::after {
-   background-color: #3f51b5 !important;
- }
+  background-color: #3f51b5 !important;
+}
 
 .clock-face__clock-hand::before {
-   border-color: #3f51b5 !important;
- }
+  border-color: #3f51b5 !important;
+}
 
 .clock-face__number > span.active {
   background-color: #3f51b5 !important;
@@ -29,3 +30,4 @@ body {
 button:not(.timepicker-dial__item) {
   color: #3f51b5 !important;
 }
+

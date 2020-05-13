@@ -29,6 +29,8 @@ import {SnackbarService} from "../services/snackbar.service";
 import { ScheduleDialogComponent } from './schedule-dialog/schedule-dialog.component';
 import { DeleteTermDialogComponent } from './delete-term-dialog/delete-term-dialog.component';
 import { EditTermDialogComponent } from './edit-term-dialog/edit-term-dialog.component';
+import { EditScheduleDialogComponent } from './edit-schedule-dialog/edit-schedule-dialog.component';
+import { DeleteScheduleDialogComponent } from './delete-schedule-dialog/delete-schedule-dialog.component';
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
@@ -59,7 +61,9 @@ const routes: Routes = [
     SheduleViewComponent,
     ScheduleDialogComponent,
     DeleteTermDialogComponent,
-    EditTermDialogComponent
+    EditTermDialogComponent,
+    EditScheduleDialogComponent,
+    DeleteScheduleDialogComponent
   ],
   imports: [
     CommonModule,

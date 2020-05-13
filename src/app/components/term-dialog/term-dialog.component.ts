@@ -94,7 +94,6 @@ export class TermDialogComponent implements OnInit {
       }
     },
       (error) => {
-      console.log(error);
       this.snackbarService.openSnackBar(`${error.error} + - ${error.statusText}`);
       })
     this.dialogRef.close();

@@ -33,6 +33,7 @@ import { EditTermDialogComponent } from './edit-term-dialog/edit-term-dialog.com
 import { EditScheduleDialogComponent } from './edit-schedule-dialog/edit-schedule-dialog.component';
 import { DeleteScheduleDialogComponent } from './delete-schedule-dialog/delete-schedule-dialog.component';
 import { ExportFileComponent } from './export-file/export-file.component';
+import { ThemePaletteComponent } from './theme-palette/theme-palette.component';
 
 const routes: Routes = [
   { path: '', component: TimetableAppComponent,
@@ -67,7 +68,8 @@ const routes: Routes = [
     EditTermDialogComponent,
     EditScheduleDialogComponent,
     DeleteScheduleDialogComponent,
-    ExportFileComponent
+    ExportFileComponent,
+    ThemePaletteComponent
   ],
   imports: [
     CommonModule,

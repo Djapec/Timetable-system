@@ -8,6 +8,7 @@ import {TermService} from "../../services/term.service";
 import {Term} from "../../models/term";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {ExportFileComponent} from "../export-file/export-file.component";
+import {Title} from "@angular/platform-browser";
 
 class Color {id: number; color: string}
 
@@ -23,7 +24,8 @@ export class SheduleViewComponent implements OnInit {
               private snackbarService: SnackbarService,
               private sidenavToggleService: SidenavToggleService,
               private termService: TermService,
-              private bottomSheet: MatBottomSheet) { }
+              private bottomSheet: MatBottomSheet,
+              private title: Title) { }
 
   state: boolean;
   scheduleId: number;
@@ -52,6 +54,7 @@ export class SheduleViewComponent implements OnInit {
     this.scheduleId = +this.route.snapshot.params.scheduleId;
     this.scheduleService.getScheduleById(this.scheduleId).subscribe((data) =>{
       this.schedule = data;
+      this.title.setTitle(`Schedule ${this.schedule.id} - Timetable App`);
     });
     this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
     {

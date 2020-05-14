@@ -12,6 +12,7 @@ import {EditTermDialogComponent} from "../edit-term-dialog/edit-term-dialog.comp
 import {EditScheduleDialogComponent} from "../edit-schedule-dialog/edit-schedule-dialog.component";
 import {DeleteScheduleDialogComponent} from "../delete-schedule-dialog/delete-schedule-dialog.component";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-overview',
@@ -26,7 +27,8 @@ export class OverviewComponent implements OnInit {
               public dialogEdit: MatDialog,
               private scheduleService: ScheduleService,
               private snackbarService: SnackbarService,
-              private router: Router) { }
+              private router: Router,
+              private title: Title) { }
   displayedColumns: string[] = ['id', 'name', 'departmentId', 'semesterId', 'isActive' , 'actions'];
   dataSource = new MatTableDataSource();
 
@@ -43,6 +45,7 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Overview - Admin - Timetable App");
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.scheduleService.getSchedules().subscribe(data => {

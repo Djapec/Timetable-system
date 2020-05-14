@@ -14,6 +14,7 @@ import {DeleteTermDialogComponent} from "../delete-term-dialog/delete-term-dialo
 import {EditTermDialogComponent} from "../edit-term-dialog/edit-term-dialog.component";
 import {Schedule} from "../../models/schedule";
 import {ScheduleService} from "../../services/schedule.service";
+import {Title} from "@angular/platform-browser";
 
 class Color {id: number; color: string}
 
@@ -28,7 +29,8 @@ export class ScheduleTableComponent implements OnInit {
               private route: ActivatedRoute,
               private termService: TermService,
               private scheduleService: ScheduleService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private title: Title) { }
 
   scheduleId: number;
   panelOpenState: boolean;
@@ -58,6 +60,7 @@ export class ScheduleTableComponent implements OnInit {
     this.scheduleId = +this.route.snapshot.params.scheduleId;
     this.scheduleService.getScheduleById(this.scheduleId).subscribe((data) =>{
       this.schedule = data;
+      this.title.setTitle(`Schedule ${this.schedule.id} - Admin - Timetable App`);
     });
     this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
     {

@@ -4,12 +4,13 @@ import {Term} from "../models/term";
 import {Observable} from "rxjs";
 import {TermPostObject} from "../models/termPostObject";
 import {TermPutObject} from "../models/termPutObject";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TermService {
-  apiURL: string = 'http://localhost:5000/api/';
+  apiURL: string = environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/';
   constructor(private httpClient: HttpClient) { }
 
   public getTermsByScheduleId(scheduleId: number){

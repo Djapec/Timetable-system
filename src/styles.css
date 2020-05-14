@@ -26,8 +26,7 @@ body {
 .clock-face__number > span.active {
   background-color: #3f51b5 !important;
 }
-
-button:not(.timepicker-dial__item) {
-  color: #3f51b5 !important;
+button > .table-button{
+  color: white!important;
 }
 

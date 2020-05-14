@@ -43,13 +43,13 @@
       <button mat-raised-button color="primary" (click)="changeScheduleStatus(element)">
         <mat-icon>cached</mat-icon>
       </button>
-      <button mat-raised-button color="primary" class="rightbutton" (click)="viewTimetableEdit(element)">
+      <button mat-raised-button color="primary" class="rightbutton table-button" [disabled]="!element.isActive" (click)="viewTimetableEdit(element)">
         <mat-icon>pageview</mat-icon>
       </button>
-      <button mat-raised-button color="primary" class="rightbutton" (click)="openEditScheduleDialog(element)">
+      <button mat-raised-button color="primary" class="rightbutton table-button" (click)="openEditScheduleDialog(element)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-raised-button color="primary" class="rightbutton" (click)="openDeleteScheduleDialog(element)">
+      <button mat-raised-button color="primary" class="rightbutton table-button" [disabled]="!element.isActive"  (click)="openDeleteScheduleDialog(element)">
         <mat-icon>delete</mat-icon>
       </button>
     </td>

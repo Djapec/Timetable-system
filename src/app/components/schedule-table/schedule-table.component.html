@@ -6,7 +6,7 @@
       <mat-card-subtitle>{{schedule.isActive? "Active" : "Inactive"}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <mat-expansion-panel class="day-panel" [expanded]="true" *ngFor="let term of terms | groupBy: 'weekday' | pairs">
+      <mat-expansion-panel class="day-panel" [expanded]="true" *ngFor="let term of terms | groupBy: 'weekday' | pairs| orderBy: 'weekdayId'">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h3 class="day-slot"> {{(term[0])}} </h3>

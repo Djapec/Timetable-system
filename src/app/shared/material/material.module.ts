@@ -22,6 +22,7 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { MatMenuModule } from "@angular/material/menu";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { MatMenuModule } from "@angular/material/menu";
     MatChipsModule,
     MatBadgeModule,
     MatBottomSheetModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   exports: [
     MatTableModule,
@@ -69,7 +71,8 @@ import { MatMenuModule } from "@angular/material/menu";
     MatChipsModule,
     MatBadgeModule,
     MatBottomSheetModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ]
 })
 export class MaterialModule { }

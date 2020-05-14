@@ -74,6 +74,7 @@ export class TermDialogComponent implements OnInit {
 
     if(this.lectureTypeControl.value == 1)
     {
+      this.termPostObject.group = 0;
       this.termPostObject.numberOfLectures = this.numberOfLecturesTypeControl.value;
     }
     else if(this.lectureTypeControl.value == 2)

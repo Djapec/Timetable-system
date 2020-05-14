@@ -76,6 +76,7 @@ export class EditTermDialogComponent implements OnInit {
 
     if(this.lectureTypeControl.value == 1)
     {
+      this.termPutObject.group = 0;
       this.termPutObject.numberOfLectures = this.numberOfLecturesTypeControl.value;
     }
     else if(this.lectureTypeControl.value == 2)

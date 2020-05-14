@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Department} from "../models/department";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DepartmentService {
-  apiURL: string = 'http://localhost:5000/api/';
+  apiURL: string = environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/';
+
   constructor(private httpClient: HttpClient) { }
 
   public getDepartments(){

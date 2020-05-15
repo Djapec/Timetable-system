@@ -39,6 +39,7 @@ export class TermDialogComponent implements OnInit {
   termPostObject: TermPostObject;
   subject: Subject;
   term: Term;
+  isLoading = true;
 
   numbers: number[] = [1, 2, 3, 4, 5];
 
@@ -123,7 +124,8 @@ export class TermDialogComponent implements OnInit {
     this.weekdayService.getWeekdays().subscribe((data)=>{
       this.weekdays = data});
     this.classroomService.getClassrooms().subscribe((data)=>{
-      this.classrooms = data});
+      this.isLoading = false;
+      this.classrooms = data;});
   }
 
 }

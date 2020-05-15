@@ -40,6 +40,7 @@ export class EditTermDialogComponent implements OnInit {
   termPutObject: TermPutObject;
   subject: Subject;
   term: Term;
+  isLoading = true;
 
   numbers: number[] = [1, 2, 3, 4, 5];
 
@@ -148,6 +149,7 @@ export class EditTermDialogComponent implements OnInit {
     this.weekdayService.getWeekdays().subscribe((data)=>{
       this.weekdays = data});
     this.classroomService.getClassrooms().subscribe((data)=>{
+      this.isLoading = false;
       this.classrooms = data});
   }
 }

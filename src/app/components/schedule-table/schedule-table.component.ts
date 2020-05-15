@@ -40,6 +40,7 @@ export class ScheduleTableComponent implements OnInit {
   lecturer: Lecturer;
   schedule: Schedule;
   terms: Term[];
+  isLoading = true;
 
   colors: Color[] = [
     {id: 1, color: "#5c6bc0"},
@@ -64,6 +65,7 @@ export class ScheduleTableComponent implements OnInit {
     });
     this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
     {
+      this.isLoading = false;
       this.terms = data;
     })
   }

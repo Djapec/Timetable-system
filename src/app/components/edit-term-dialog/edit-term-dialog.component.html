@@ -85,8 +85,16 @@
   <mat-hint>{{groupControl.value?.sound}}</mat-hint>
 </mat-form-field>
   <br>
+  <mat-card *ngIf="isLoading"
+            style="display: flex; justify-content: center; align-items: center">
+    <mat-progress-spinner
+      color="primary"
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </mat-card>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
   <button mat-button (click)="onYesClick()" [disabled]="!isFormValid()" cdkFocusInitial color="primary">Ok</button>
 </div>
+

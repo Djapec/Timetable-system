@@ -13,7 +13,7 @@ import {Title} from "@angular/platform-browser";
 export class TimetableNavTabComponent implements OnInit {
 
   departments: Department[];
-
+  isLoading = true;
   state: boolean;
   constructor(private root: ActivatedRoute,
               private sidenavToggleService: SidenavToggleService,
@@ -26,6 +26,7 @@ export class TimetableNavTabComponent implements OnInit {
   ngOnInit(): void {
     this.departmentService.getDepartments().subscribe((data) =>
     {
+      this.isLoading = false;
       this.departments = data;
       this.title.setTitle(`Schedules - Timetable App`);
     });

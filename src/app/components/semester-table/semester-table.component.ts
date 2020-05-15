@@ -13,6 +13,7 @@ import {Schedule} from "../../models/schedule";
 export class SemesterTableComponent implements OnInit {
   @Input() departmentId: number;
   dataSource = new MatTableDataSource();
+  isLoading = true;
 
   state: boolean;
   displayedColumns: string[] = ['changed', 'semester','updatedAt', 'view'];
@@ -28,6 +29,7 @@ export class SemesterTableComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle(`Schedules - Admin - Timetable App`);
     this.scheduleService.getScheduleByDepartmentId(this.departmentId).subscribe((data) => {
+      this.isLoading = false;
       this.dataSource.data = data;
     });
     this.changeState();

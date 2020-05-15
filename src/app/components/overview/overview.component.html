@@ -61,4 +61,11 @@
 <mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 50, 100]" showFirstLastButtons></mat-paginator>
 </mat-card>
 </div>
+<mat-card *ngIf="isLoading"
+          style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>
 <!--<p class="test" ><mat-checkbox [(opened)]="opened">sidenav.opened</mat-checkbox></p>-->

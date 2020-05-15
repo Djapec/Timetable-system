@@ -33,6 +33,7 @@ export class SheduleViewComponent implements OnInit {
   scheduleId: number;
   schedule: Schedule;
   terms: Term[];
+  isLoading = true;
 
   colors: Color[] = [
     {id: 1, color: "#5c6bc0"},
@@ -60,6 +61,7 @@ export class SheduleViewComponent implements OnInit {
     });
     this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
     {
+      this.isLoading = false;
       this.terms = data;
     })
   }

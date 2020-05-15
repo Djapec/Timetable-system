@@ -8,3 +8,10 @@
     </mat-tab-group>
   </mat-card-content>
 </mat-card>
+<mat-card *ngIf="isLoading"
+          style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>

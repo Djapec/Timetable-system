@@ -33,5 +33,11 @@
       </mat-card-content>
     </mat-card>
   </div>
-
+<mat-card *ngIf="isLoading"
+          style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>
 

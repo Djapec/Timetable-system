@@ -23,7 +23,7 @@ import {Department} from "../../models/department";
 })
 export class OverviewComponent implements OnInit {
   state: boolean;
-
+  isLoading = true;
   constructor(private sidenavToggleService: SidenavToggleService,
               public dialog: MatDialog,
               public dialogEdit: MatDialog,
@@ -54,6 +54,7 @@ export class OverviewComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.scheduleService.getSchedules().subscribe(data => {
+      this.isLoading = false;
       this.dataSource.data = data;
     });
     this.changeState();

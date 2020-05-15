@@ -4,4 +4,6 @@ export class Schedule {
   semesterId: number;
   departmentId: number;
   isActive: boolean;
+  updatedAt: number;
+  semester: string;
 }

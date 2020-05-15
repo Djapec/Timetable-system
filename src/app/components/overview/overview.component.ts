@@ -13,6 +13,8 @@ import {EditScheduleDialogComponent} from "../edit-schedule-dialog/edit-schedule
 import {DeleteScheduleDialogComponent} from "../delete-schedule-dialog/delete-schedule-dialog.component";
 import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
+import {DepartmentService} from "../../services/department.service";
+import {Department} from "../../models/department";
 
 @Component({
   selector: 'app-overview',
@@ -28,9 +30,12 @@ export class OverviewComponent implements OnInit {
               private scheduleService: ScheduleService,
               private snackbarService: SnackbarService,
               private router: Router,
-              private title: Title) { }
+              private title: Title,
+              private departmentService: DepartmentService) { }
   displayedColumns: string[] = ['id', 'name', 'departmentId', 'semesterId', 'isActive' , 'actions'];
   dataSource = new MatTableDataSource();
+
+  department: Department;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -87,5 +92,9 @@ export class OverviewComponent implements OnInit {
 
   viewTimetableEdit(schedule: Schedule) {
     this.router.navigate(['admin/timetable/', schedule.id]);
+  }
+
+  getDepartment(departmentId){
+    this.departmentService.getDepartmentById(departmentId).subscribe(data => this.department = data);
   }
 }

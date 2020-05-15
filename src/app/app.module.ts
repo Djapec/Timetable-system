@@ -10,6 +10,7 @@ import { HttpClientModule } from "@angular/common/http";
 import {TimetableModule} from './components/timetable.module';
 import {StyleManagerService} from "./services/style-manager.service";
 import {ThemeService} from "./services/theme.service";
+import {MaterialModule} from "./shared/material/material.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {ThemeService} from "./services/theme.service";
     LayoutModule,
     NgxMaterialTimepickerModule.setLocale("en-US"),
     HttpClientModule,
-    TimetableModule
+    TimetableModule,
+    MaterialModule
   ],
   providers: [StyleManagerService, ThemeService],
   bootstrap: [AppComponent]

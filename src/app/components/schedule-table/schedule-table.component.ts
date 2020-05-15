@@ -79,4 +79,19 @@ export class ScheduleTableComponent implements OnInit {
       data: {termId, subjectId, semesterId, moduleId, scheduleId}
     });
   }
+
+  getTermClassName(term: Term): string
+  {
+    if(term.numberOfLectures > 0)
+    {
+      return "term-card-lecture";
+    }
+    else if(term.numberOfExercises > 0)
+    {
+      return "term-card-exercises";
+    }
+    else {
+      return "term-card-lab-exercises";
+    }
+  }
 }

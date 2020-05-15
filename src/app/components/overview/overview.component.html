@@ -29,7 +29,7 @@
 
   <ng-container matColumnDef="semesterId" >
     <th mat-header-cell *matHeaderCellDef mat-sort-header> SEMESTER ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.semesterId}} </td>
+    <td mat-cell *matCellDef="let element" [matTooltip]="element.semester"> {{element.semesterId}} </td>
   </ng-container>
 
   <ng-container matColumnDef="isActive">

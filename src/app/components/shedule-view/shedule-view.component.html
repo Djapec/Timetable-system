@@ -1,9 +1,9 @@
- <div class="schedule">
+<div class="schedule">
     <mat-card class="example-card">
       <mat-card-header>
         <div class="header-text" style="float: left">
           <mat-card-title >{{schedule.name}}</mat-card-title>
-          <mat-card-subtitle >{{schedule.isActive? "Active" : "Inactive"}}</mat-card-subtitle>
+          <mat-card-subtitle>{{schedule.isActive? "Active" : "Inactive"}}</mat-card-subtitle>
         </div>
         <div style="text-align: right">
           <button mat-raised-button  class="download-button"(click)="openBottomSheet()" >
@@ -19,10 +19,12 @@
               <h3 class="day-slot"> {{(term[0])}} </h3>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-card  class="class-card" [style]="'background-color:' + colors[val.weekdayId].color"  *ngFor="let val of term[1]">
+          <mat-card  class="class-card" [class]="getTermClassName(val)"  *ngFor="let val of term[1]">
             <div class="class class-1 ">
               <h4 class="subject-title"> {{val.subject}} ({{val.numberOfLectures}}+{{val.numberOfExercises}}+{{val.numberOfLabExercises}})</h4>
               <span class="class-time">{{val.startTime}}</span>
+              <span class="class-to">-</span>
+              <span class="class-end-time">{{val.endTime}}</span>
               <span class="class-room"> {{val.classroom}} </span>
               <span class="class-professor">{{val.lecturerFullName}}</span>
             </div>

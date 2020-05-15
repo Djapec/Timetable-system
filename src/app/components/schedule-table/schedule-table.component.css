@@ -19,15 +19,29 @@
   grid-template-columns: 50px 1fr 50px 70px;
   grid-template-rows: auto;
   grid-template-areas:
-    "time profesor-class room delete"
-     " . profesor . edit";
+    "time profesor-class . delete"
+    "to . room . "
+    "end profesor . edit";
 }
 
 .class-time{
   grid-area: time;
-  justify-self: start;
-  place-self: end;
+  justify-self: center;
+  place-self: center;
 }
+
+.class-end-time{
+  grid-area: end;
+  justify-self: end;
+  place-self: center;
+}
+
+.class-to{
+  grid-area: to;
+  justify-self: center;
+  place-self: center;
+}
+
 .class-professor{
   grid-area: profesor;
   place-self: center;
@@ -37,23 +51,22 @@
   grid-area: profesor-class;
   place-self: start;
   justify-self: center;
+  margin: 0;
 }
 .class-room{
   grid-area: room;
-  justify-self: end;
-  place-self: end;
+  justify-self: center;
+  place-self: center;
 }
 .delete-button{
-  color: black!important;
   grid-area: delete;
   place-self: center;
-  justify-self: end;
+  justify-self: center;
 }
 .edit-button{
-  color: black!important;
   grid-area: edit;
   place-self: center;
-  justify-self: end;
+  justify-self: center;
 }
 .example-header-image {
   background-size: cover;

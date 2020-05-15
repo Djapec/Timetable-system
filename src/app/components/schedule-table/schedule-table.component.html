@@ -1,4 +1,3 @@
-
 <div class="schedule">
   <mat-card class="example-card">
     <mat-card-header>
@@ -12,16 +11,18 @@
             <h3 class="day-slot"> {{(term[0])}} </h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-card  class="class-card" [style]="'background-color:' + colors[val.weekdayId].color"  *ngFor="let val of term[1]">
+        <mat-card  class="class-card" [class]="getTermClassName(val)" *ngFor="let val of term[1]">
           <div class="class class-1 ">
             <h4 class="subject-title"> {{val.subject}} ({{val.numberOfLectures}}+{{val.numberOfExercises}}+{{val.numberOfLabExercises}})</h4>
             <span class="class-time">{{val.startTime}}</span>
+            <span class="class-to">-</span>
+            <span class="class-end-time">{{val.endTime}}</span>
             <span class="class-room"> {{val.classroom}} </span>
             <span class="class-professor">{{val.lecturerFullName}}</span>
-            <button mat-icon-button color="black" class="delete-button" (click)="openDeleteDialog(val.id)">
+            <button mat-icon-button [matTooltip]="'Delete term with id ' + val.id" color="black" class="delete-button" (click)="openDeleteDialog(val.id)">
               <mat-icon >delete</mat-icon>
             </button>
-            <button mat-icon-button color="black" class="edit-button" (click)="openUpdateDialog(val.id, val.subjectId, val.semesterId, val.moduleId, val.scheduleId)">
+            <button mat-icon-button color="black" [matTooltip]="'Edit term with id ' + val.id" class="edit-button" (click)="openUpdateDialog(val.id, val.subjectId, val.semesterId, val.moduleId, val.scheduleId)">
               <mat-icon >edit</mat-icon>
             </button>
           </div>

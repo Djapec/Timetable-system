@@ -1,5 +1,10 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {
+  NavigationCancel,
+  NavigationEnd, NavigationError,
+  NavigationStart,
+  Router
+} from '@angular/router';
 import {ThemeService} from "../../services/theme.service";
 import {Observable} from "rxjs";
 import {Option} from "../../models/option";
@@ -10,8 +15,27 @@ import {Option} from "../../models/option";
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
+  loading = false;
+  constructor(public router: Router, private themeService: ThemeService) {
+    this.router.events.subscribe((event) => {
+      switch (true) {
+        case event instanceof NavigationStart: {
+          this.loading = true;
+          break;
+        }
 
-  constructor(public router: Router, private themeService: ThemeService) { }
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          this.loading = false;
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    });
+  }
 
   options$: Observable<Array<Option>> = this.themeService.getThemeOptions();
 

@@ -3,6 +3,7 @@ import {SidenavToggleService} from '../../services/sidenav-toggle.service';
 import {ScheduleService} from "../../services/schedule.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Title} from "@angular/platform-browser";
+import {Schedule} from "../../models/schedule";
 
 @Component({
   selector: 'app-semester-table',
@@ -14,7 +15,7 @@ export class SemesterTableComponent implements OnInit {
   dataSource = new MatTableDataSource();
 
   state: boolean;
-  displayedColumns: string[] = ['id', 'departmentId', 'semesterId', 'isActive', 'view'];
+  displayedColumns: string[] = ['changed', 'semester','updatedAt', 'view'];
 
   constructor(private sidenavToggleService: SidenavToggleService,
               private scheduleService: ScheduleService,
@@ -32,4 +33,17 @@ export class SemesterTableComponent implements OnInit {
     this.changeState();
   }
 
+  updatedSchedule(schedule: Schedule)
+  {
+    let currentDate = new Date();
+    if((currentDate.getTime() - schedule.updatedAt) <= 3600000) {
+      return {icon: "new_releases", color: "warn", text: "New schedule!"};
+    }
+
+    if((currentDate.getTime() - schedule.updatedAt) <= 86400000) {
+      return {icon: "update", color: "accent", text: "Schedule is updated!"};
+    }
+
+    return {icon: "schedule", color: "primary", text: "Active schedule!"};
+  }
 }

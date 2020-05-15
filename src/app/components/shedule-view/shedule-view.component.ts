@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {SidenavToggleService} from '../../services/sidenav-toggle.service';
 import {ActivatedRoute} from "@angular/router";
 import {ScheduleService} from "../../services/schedule.service";
@@ -9,6 +9,7 @@ import {Term} from "../../models/term";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {ExportFileComponent} from "../export-file/export-file.component";
 import {Title} from "@angular/platform-browser";
+import {ThemeService} from "../../services/theme.service";
 
 class Color {id: number; color: string}
 
@@ -25,7 +26,8 @@ export class SheduleViewComponent implements OnInit {
               private sidenavToggleService: SidenavToggleService,
               private termService: TermService,
               private bottomSheet: MatBottomSheet,
-              private title: Title) { }
+              private title: Title,
+              private themeService: ThemeService) { }
 
   state: boolean;
   scheduleId: number;
@@ -65,4 +67,20 @@ export class SheduleViewComponent implements OnInit {
   openBottomSheet() {
     this.bottomSheet.open(ExportFileComponent, {data: this.scheduleId});
   }
+
+  getTermClassName(term: Term): string
+  {
+    if(term.numberOfLectures > 0)
+    {
+      return "term-card-lecture";
+    }
+    else if(term.numberOfExercises > 0)
+    {
+      return "term-card-exercises";
+    }
+    else {
+      return "term-card-lab-exercises";
+    }
+  }
 }
+

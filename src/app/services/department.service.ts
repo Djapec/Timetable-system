@@ -14,4 +14,8 @@ export class DepartmentService {
   public getDepartments(){
     return this.httpClient.get<Department[]>(this.apiURL + `Departments/`);
   }
+
+  public getDepartmentById(departmentId: number){
+    return this.httpClient.get<Department>(this.apiURL + `Departments/${departmentId}`);
+  }
 }

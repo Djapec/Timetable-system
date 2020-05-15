@@ -4,5 +4,3 @@ mat-radio-button {
 mat-form-field {
   width: 100%;
 }
-
-button:not(.timepicker-dial__item) {color: #3f51b5 !important;}

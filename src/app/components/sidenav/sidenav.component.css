@@ -17,6 +17,14 @@
   width: 240px;
 }
 
-.wrapper {
+.wrapperr {
   margin: 50px;
+}
+
+@media only screen and (max-width: 780px) {
+  .wrapperr{
+    margin: 0;
+    padding: 10px;
+  }
+
 }

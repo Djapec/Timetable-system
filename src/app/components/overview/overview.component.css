@@ -1,9 +1,6 @@
 table {
   width: 100%;
 }
-table th,td{
-
-}
 .rightbutton {
   margin-left: 10px;
 }
@@ -16,5 +13,10 @@ th.mat-sort-header-sorted {
 }
 mat-icon{
   color: white;
+}
+@media only screen and (max-width: 780px) {
+  .rightbutton {
+    margin-left: 0px;
+  }
 }
 

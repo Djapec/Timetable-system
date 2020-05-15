@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {SidenavToggleService} from '../../services/sidenav-toggle.service';
 import {ScheduleService} from "../../services/schedule.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Title} from "@angular/platform-browser";
 import {Schedule} from "../../models/schedule";
+import {MatSort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-semester-table',
@@ -12,6 +13,7 @@ import {Schedule} from "../../models/schedule";
 })
 export class SemesterTableComponent implements OnInit {
   @Input() departmentId: number;
+  @ViewChild(MatSort) sort: MatSort;
   dataSource = new MatTableDataSource();
   isLoading = true;
 

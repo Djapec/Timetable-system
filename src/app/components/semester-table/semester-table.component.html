@@ -1,7 +1,7 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortActive="updatedAt" matSortDirection="asc" matSortDisableClear>
   <ng-container matColumnDef="changed">
     <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element" [matTooltip]="updatedSchedule(element).text"><button style="cursor: default; pointer-events: none" mat-mini-fab [color]="updatedSchedule(element).color" aria-label=""><mat-icon>{{updatedSchedule(element).icon}}</mat-icon></button></td>
+    <td mat-cell *matCellDef="let element"  [matTooltip]="updatedSchedule(element).text"><button style="cursor: default; pointer-events: none" mat-mini-fab [color]="updatedSchedule(element).color" aria-label=""><mat-icon>{{updatedSchedule(element).icon}}</mat-icon></button></td>
   </ng-container>
 
   <ng-container matColumnDef="semester">

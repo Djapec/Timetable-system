@@ -1,5 +1,5 @@
-<h1 mat-dialog-title>Subject: {{subject.name}}</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title *ngIf="!isLoading">Subject: {{subject.name}}</h1>
+<div mat-dialog-content *ngIf="!isLoading">
   <p>Fill all fields in order to add new term!</p>
   <mat-form-field>
     <mat-label>Select lecturer</mat-label>
@@ -83,17 +83,16 @@
   <mat-error *ngIf="groupControl.hasError('required')">Please choose an group</mat-error>
   <mat-hint>{{groupControl.value?.sound}}</mat-hint>
 </mat-form-field>
-
-  <mat-card *ngIf="isLoading"
-            style="display: flex; justify-content: center; align-items: center">
-    <mat-progress-spinner
-      color="primary"
-      mode="indeterminate">
-    </mat-progress-spinner>
-  </mat-card>
 </div>
 <br>
-<div mat-dialog-actions>
+<div mat-dialog-actions *ngIf="!isLoading">
   <button mat-button (click)="onNoClick()">No Thanks</button>
   <button mat-button (click)="onYesClick()" [disabled]="!isFormValid()" cdkFocusInitial color="primary">Ok</button>
 </div>
+<mat-card *ngIf="isLoading"
+          style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>

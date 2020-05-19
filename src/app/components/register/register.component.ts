@@ -12,7 +12,7 @@ import {ThemeService} from "../../services/theme.service";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  usernameFormControl = new FormControl('', Validators.required);
+  usernameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]);
   firstNameFormControl = new FormControl('', Validators.required);
   lastNameFormControl = new FormControl('', Validators.required);
 

@@ -8,8 +8,9 @@
 
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput type="email" placeholder="Username" [formControl]="usernameFormControl">
-          <mat-error *ngIf="usernameFormControl.hasError('required')">Username is required</mat-error>
+          <input matInput type="email" placeholder="example@gmail.com" [formControl]="usernameFormControl">
+          <mat-error *ngIf="usernameFormControl.hasError('required')">Username is required!</mat-error>
+          <mat-error *ngIf="usernameFormControl.hasError('pattern')">Provide valid username!</mat-error>
           <mat-hint>{{usernameFormControl.value?.sound}}</mat-hint>
         </mat-form-field>
 

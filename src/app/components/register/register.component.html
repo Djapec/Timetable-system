@@ -35,6 +35,6 @@
                           mode="indeterminate">
     </mat-progress-spinner>
 
-    <mat-card-footer style="margin-top: 15px!important;"><a style="text-decoration: none; color: black;" [routerLink]="['/']">Back to home...</a></mat-card-footer>
+    <mat-card-footer *ngIf="!loading" style="margin-top: 15px!important;"><a style="text-decoration: none; color: black;" [routerLink]="['/']">Back to home...</a></mat-card-footer>
   </mat-card>
 </div>

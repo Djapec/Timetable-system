@@ -15,9 +15,10 @@
           <div class="class class-1 ">
             <h4 class="subject-title"> {{val.subject}} ({{val.numberOfLectures}}+{{val.numberOfExercises}}+{{val.numberOfLabExercises}})</h4>
             <span class="class-time">{{val.startTime}}</span>
+            <span class="class-group" *ngIf="val.group != 0"><b>Group {{val.group}}</b></span>
             <span class="class-to">-</span>
             <span class="class-end-time">{{val.endTime}}</span>
-            <span class="class-room"> {{val.classroom}} </span>
+            <span class="class-room">{{val.classroom}}</span>
             <span class="class-professor">{{val.lecturerFullName}}</span>
             <button mat-icon-button [matTooltip]="'Delete term with id ' + val.id" color="black" class="delete-button" (click)="openDeleteDialog(val.id)">
               <mat-icon >delete</mat-icon>

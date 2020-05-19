@@ -20,7 +20,7 @@
   grid-template-rows: auto;
   grid-template-areas:
     "time profesor-class . delete"
-    "to . room . "
+    "to group room . "
     "end profesor . edit";
 }
 
@@ -38,6 +38,12 @@
 
 .class-to{
   grid-area: to;
+  justify-self: center;
+  place-self: center;
+}
+
+.class-group{
+  grid-area: group;
   justify-self: center;
   place-self: center;
 }

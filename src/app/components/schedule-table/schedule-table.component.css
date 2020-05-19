@@ -47,6 +47,7 @@
   place-self: center;
   align-self: center;
 }
+
 .subject-title{
   grid-area: profesor-class;
   place-self: start;

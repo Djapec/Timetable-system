@@ -11,7 +11,7 @@
             <h3 class="day-slot"> {{(term[0])}} </h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-card  class="class-card" [class]="getTermClassName(val)" *ngFor="let val of term[1]">
+        <mat-card  class="class-card" [class]="getTermClassName(val)" *ngFor="let val of term[1] | orderBy: 'startTime'">
           <div class="class class-1 ">
             <h4 class="subject-title"> {{val.subject}} ({{val.numberOfLectures}}+{{val.numberOfExercises}}+{{val.numberOfLabExercises}})</h4>
             <span class="class-time">{{val.startTime}}</span>

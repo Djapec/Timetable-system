@@ -41,7 +41,7 @@ export class EditScheduleDialogComponent implements OnInit {
       },
       (error) =>
       {
-        this.snackbarService.openSnackBar(`${error.error} + - ${error.statusText}`);
+        this.snackbarService.openSnackBar(`${error.error}`);
       });
   }
 }

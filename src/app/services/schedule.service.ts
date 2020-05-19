@@ -45,6 +45,6 @@ export class ScheduleService {
     });
   }
   public deleteSchedule(scheduleId: number){
-    return this.httpClient.delete(this.apiURL + `Schedules/${scheduleId}`);
+    return this.httpClient.delete(this.apiURL + `Schedules/delete/${scheduleId}`);
   }
 }

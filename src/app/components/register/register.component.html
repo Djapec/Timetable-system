@@ -1,0 +1,40 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header *ngIf="!loading">
+      <mat-card-title>Register new admin!</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form" *ngIf="!loading">
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput type="email" placeholder="Username" [formControl]="usernameFormControl">
+          <mat-error *ngIf="usernameFormControl.hasError('required')">Username is required</mat-error>
+          <mat-hint>{{usernameFormControl.value?.sound}}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First name" [formControl]="firstNameFormControl">
+          <mat-error *ngIf="firstNameFormControl.hasError('required')">Last name is required</mat-error>
+          <mat-hint>{{firstNameFormControl.value?.sound}}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last name" [formControl]="lastNameFormControl">
+          <mat-error *ngIf="lastNameFormControl.hasError('required')">First name is required</mat-error>
+          <mat-hint>{{lastNameFormControl.value?.sound}}</mat-hint>
+        </mat-form-field>
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block" (click)="onSubmit()">Register</button>
+
+    </form>
+
+    <mat-progress-spinner style="text-align: center" *ngIf="loading"
+                          color="primary"
+                          mode="indeterminate">
+    </mat-progress-spinner>
+
+    <mat-card-footer style="margin-top: 15px!important;"><a style="text-decoration: none; color: black;" [routerLink]="['/']">Back to home...</a></mat-card-footer>
+  </mat-card>
+</div>

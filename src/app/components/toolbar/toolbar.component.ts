@@ -8,6 +8,9 @@ import {
 import {ThemeService} from "../../services/theme.service";
 import {Observable} from "rxjs";
 import {Option} from "../../models/option";
+import {AuthenticationService} from "../../services/authentication.service";
+import {User} from "../../models/user";
+import {Role} from "../../models/role";
 
 @Component({
   selector: 'app-toolbar',
@@ -15,8 +18,11 @@ import {Option} from "../../models/option";
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
+  user: User;
   loading = false;
-  constructor(public router: Router, private themeService: ThemeService) {
+  constructor(public router: Router, private themeService: ThemeService, private authenticationService: AuthenticationService) {
+    this.authenticationService.user.subscribe(x => this.user = x);
+
     this.router.events.subscribe((event) => {
       switch (true) {
         case event instanceof NavigationStart: {
@@ -35,6 +41,19 @@ export class ToolbarComponent implements OnInit {
         }
       }
     });
+  }
+
+  get isAdmin() {
+    return this.user && this.user.role === Role.Admin;
+  }
+
+  get isLoggedIn()
+  {
+    return this.user != null;
+  }
+
+  logout() {
+    this.authenticationService.logout();
   }
 
   options$: Observable<Array<Option>> = this.themeService.getThemeOptions();

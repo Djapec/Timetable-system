@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortActive="updatedAt" matSortDirection="asc" matSortDisableClear>
+<table *ngIf="dataSource?.data?.length > 0" mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortActive="updatedAt" matSortDirection="asc" matSortDisableClear>
   <ng-container matColumnDef="changed">
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element"  [matTooltip]="updatedSchedule(element).text"><button style="cursor: default; pointer-events: none" mat-mini-fab [color]="updatedSchedule(element).color" aria-label=""><mat-icon>{{updatedSchedule(element).icon}}</mat-icon></button></td>
@@ -32,4 +32,9 @@
     color="primary"
     mode="indeterminate">
   </mat-progress-spinner>
+</mat-card>
+
+<mat-card *ngIf="dataSource?.data?.length <= 0" style="text-align: center">
+  <mat-card-title>There are currently no active schedules.</mat-card-title>
+  <mat-card-subtitle>Please try again later...</mat-card-subtitle>
 </mat-card>

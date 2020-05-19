@@ -13,7 +13,7 @@ import {ThemeService} from "../../services/theme.service";
   styleUrls: ['./log-in.component.css']
 })
 export class LogInComponent implements OnInit {
-  usernameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]);
+  usernameFormControl = new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}|admin$")]);
   passwordFormControl = new FormControl('', Validators.required);
 
   loading = false;

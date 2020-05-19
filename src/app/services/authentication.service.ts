@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`${environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/'}users/authenticate`, { username, password })
+    return this.http.post<any>(`${environment.apiUrl}users/authenticate`, { username, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
@@ -38,7 +38,7 @@ export class AuthenticationService {
   }
 
   register(username: string, password: string, firstName: string, lastName: string) {
-    return this.http.post<any>(`${environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/'}users/register`, { username, password, firstName, lastName })
+    return this.http.post<any>(`${environment.apiUrl}users/register`, { username, password, firstName, lastName })
       .pipe(map(user => {
         return true;
       }));

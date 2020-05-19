@@ -11,6 +11,7 @@
   <div class="toolbar-right">
     <app-theme-palette matTooltip="Choose theme!" class="toolbar-pallet" style="margin-left: auto; cursor: pointer;"  [options]="options$ | async"
                        (themeChange)="themeChangeHandler($event)">></app-theme-palette>
+    
     <mat-icon matTooltip="Register new admin!" [routerLink]="['/register']" *ngIf="isAdmin" style="margin-left: auto; cursor: pointer;" class="toolbar-logout">person_add</mat-icon>
     <mat-icon matTooltip="Logout!" (click)="logout()" *ngIf="isAdmin" style="margin-left: auto; cursor: pointer;" class="toolbar-logout">exit_to_app</mat-icon>
     <mat-icon matTooltip="Login!" [routerLink]="['/login']" *ngIf="!isLoggedIn" style="margin-left: auto; cursor: pointer;" class="toolbar-logout">person</mat-icon>

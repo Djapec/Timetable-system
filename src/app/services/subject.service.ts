@@ -7,14 +7,13 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class SubjectService {
-  apiURL: string = environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/';
   constructor(private httpClient: HttpClient) { }
 
   public getSubjectsByModuleIdAndDepartmentId(semesterId: number, moduleId: number){
-    return this.httpClient.get<Subject[]>(this.apiURL + `Subjects/?semesterId=${semesterId}&moduleId=${moduleId}`);
+    return this.httpClient.get<Subject[]>(environment.apiUrl + `Subjects/?semesterId=${semesterId}&moduleId=${moduleId}`);
   }
 
   public getSubjectById(subjectId: number){
-    return this.httpClient.get<Subject>(this.apiURL + `Subjects/${subjectId}`);
+    return this.httpClient.get<Subject>(environment.apiUrl + `Subjects/${subjectId}`);
   }
 }

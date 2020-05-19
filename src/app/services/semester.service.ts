@@ -7,10 +7,9 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class SemesterService {
-  apiURL: string = environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/';
   constructor(private httpClient: HttpClient) { }
 
   public getSemesters(){
-    return this.httpClient.get<Semester[]>(this.apiURL + `Semesters/`);
+    return this.httpClient.get<Semester[]>(environment.apiUrl + `Semesters/`);
   }
 }

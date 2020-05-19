@@ -10,20 +10,19 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class TermService {
-  apiURL: string = environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/';
   constructor(private httpClient: HttpClient) { }
 
   public getTermsByScheduleId(scheduleId: number){
-    return this.httpClient.get<Term[]>(this.apiURL + `Terms/by_schedule?scheduleId=${scheduleId}`);
+    return this.httpClient.get<Term[]>(environment.apiUrl + `Terms/by_schedule?scheduleId=${scheduleId}`);
   }
 
   public getTermById(termId: number){
-    return this.httpClient.get<Term>(this.apiURL + `Terms/${termId}`);
+    return this.httpClient.get<Term>(environment.apiUrl+ `Terms/${termId}`);
   }
 
   public postTerm(termPostObject: TermPostObject): Observable<Term> {
     console.log(JSON.stringify(termPostObject));
-    return this.httpClient.post<Term>(this.apiURL + `Terms/`, JSON.stringify(termPostObject), {
+    return this.httpClient.post<Term>(environment.apiUrl + `Terms/`, JSON.stringify(termPostObject), {
       headers: {
         'Content-Type' : 'application/json'
       }
@@ -32,7 +31,7 @@ export class TermService {
 
   public putTerm(termPutObject: TermPutObject): Observable<Term> {
     console.log(JSON.stringify(termPutObject));
-    return this.httpClient.put<Term>(this.apiURL + `Terms/`, JSON.stringify(termPutObject), {
+    return this.httpClient.put<Term>(environment.apiUrl + `Terms/`, JSON.stringify(termPutObject), {
       headers: {
         'Content-Type' : 'application/json'
       }
@@ -40,6 +39,6 @@ export class TermService {
   }
 
   public deleteTerm(termId: number){
-    return this.httpClient.delete(this.apiURL + `Terms/${termId}`);
+    return this.httpClient.delete(environment.apiUrl + `Terms/${termId}`);
   }
 }

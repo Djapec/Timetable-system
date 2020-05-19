@@ -8,29 +8,28 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class ScheduleService {
-  apiURL: string = environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/';
   constructor(private httpClient: HttpClient) { }
 
   public getScheduleById(scheduleId: number): Observable<Schedule>{
-    return this.httpClient.get<Schedule>(this.apiURL + `Schedules/${scheduleId}`);
+    return this.httpClient.get<Schedule>(environment.apiUrl + `Schedules/${scheduleId}`);
   }
 
   public getScheduleByDepartmentId(departmentId: number): Observable<Schedule[]>{
-    return this.httpClient.get<Schedule[]>(this.apiURL + `Schedules/by_department?departmentId=${departmentId}`);
+    return this.httpClient.get<Schedule[]>(environment.apiUrl + `Schedules/by_department?departmentId=${departmentId}`);
   }
 
   public getSchedules()
   {
-    return this.httpClient.get<Schedule[]>(this.apiURL + `Schedules/all`);
+    return this.httpClient.get<Schedule[]>(environment.apiUrl + `Schedules/all`);
   }
 
   public getActiveSchedules()
   {
-    return this.httpClient.get<Schedule[]>(this.apiURL + `Schedules/`);
+    return this.httpClient.get<Schedule[]>(environment.apiUrl + `Schedules/`);
   }
 
   public postSchedule(departmentId: number, semesterId: number): Observable<Schedule> {
-    return this.httpClient.post<Schedule>(this.apiURL + `Schedules`, { departmentId: departmentId, semesterId: semesterId }, {
+    return this.httpClient.post<Schedule>(environment.apiUrl + `Schedules`, { departmentId: departmentId, semesterId: semesterId }, {
       headers: {
         'Content-Type' : 'application/json; charset=UTF-8'
       }
@@ -38,13 +37,13 @@ export class ScheduleService {
   }
 
   public putSchedule(scheduleId: number, name: string, isActive: boolean): Observable<Schedule> {
-    return this.httpClient.put<Schedule>(this.apiURL + `Schedules`, { id: scheduleId, name: name, isActive: isActive }, {
+    return this.httpClient.put<Schedule>(environment.apiUrl + `Schedules`, { id: scheduleId, name: name, isActive: isActive }, {
       headers: {
         'Content-Type' : 'application/json; charset=UTF-8'
       }
     });
   }
   public deleteSchedule(scheduleId: number){
-    return this.httpClient.delete(this.apiURL + `Schedules/delete/${scheduleId}`);
+    return this.httpClient.delete(environment.apiUrl + `Schedules/delete/${scheduleId}`);
   }
 }

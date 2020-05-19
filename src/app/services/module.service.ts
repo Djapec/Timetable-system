@@ -7,10 +7,9 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class ModuleService {
-  apiURL: string = environment.production? 'https://timetable-application-5a0bd.herokuapp.com/api/' : 'http://localhost:5000/api/';
   constructor(private httpClient: HttpClient) { }
 
   public getModulesByDepartmentId(departmentId: number){
-    return this.httpClient.get<Module[]>(this.apiURL + `Modules/by_department?departmentId=${departmentId}`);
+    return this.httpClient.get<Module[]>(environment.apiUrl + `Modules/by_department?departmentId=${departmentId}`);
   }
 }

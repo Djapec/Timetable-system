@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 
 import {AuthenticationService} from "../../services/authentication.service";
 import {SnackbarService} from "../../services/snackbar.service";
+import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-log-in',
@@ -24,8 +25,8 @@ export class LogInComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private snackbarService: SnackbarService
-  ) {
+    private snackbarService: SnackbarService,
+    private themeService: ThemeService) {
     // redirect to home if already logged in
     if (this.authenticationService.userValue) {
       this.router.navigate(['/']);
@@ -33,8 +34,21 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.changeBackground();
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.themeService.setTheme("indigo-pink");
+  }
+
+  changeBackground()
+  {
+    var currentTime = new Date().getHours();
+    if (7 <= currentTime && currentTime < 19) {
+      document.getElementById("login-bg").style.backgroundImage = "url(https://lh4.googleusercontent.com/-XplyTa1Za-I/VMSgIyAYkHI/AAAAAAAADxM/oL-rD6VP4ts/w1184-h666/Android-Lollipop-wallpapers-Google-Now-Wallpaper-2.png)";
+    }
+    else {
+      document.getElementById("login-bg").style.backgroundImage = "url(https://cdn.techjuice.pk/wp-content/uploads/2016/07/12.png)";
+    }
   }
 
   onSubmit() {

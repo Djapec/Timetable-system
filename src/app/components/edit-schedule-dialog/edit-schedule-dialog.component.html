@@ -10,11 +10,6 @@
     </mat-error>
   </mat-form-field>
   <br>
-  <mat-checkbox [formControl]="isActiveFormControl">IsActive?</mat-checkbox>
-  <mat-error *ngIf="isActiveFormControl.hasError('required')">
-    Status is <strong>required</strong>
-  </mat-error>
-  <br>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>

@@ -7,10 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from "@angular/cdk/layout";
 import { NgxMaterialTimepickerModule } from "ngx-material-timepicker";
 import { HttpClientModule } from "@angular/common/http";
-import {TimetableModule} from './components/timetable.module';
-import {StyleManagerService} from "./services/style-manager.service";
-import {ThemeService} from "./services/theme.service";
-import {MaterialModule} from "./shared/material/material.module";
+import { TimetableModule } from './components/timetable.module';
+import { StyleManagerService } from "./services/style-manager.service";
+import { ThemeService } from "./services/theme.service";
+import { MaterialModule } from "./shared/material/material.module";
 
 @NgModule({
   declarations: [

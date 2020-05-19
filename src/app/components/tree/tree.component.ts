@@ -43,7 +43,7 @@ export class TreeComponent implements OnInit{
       });
     },
       (error) => {
-      this.snackbarService.openSnackBar(error.message);
+      this.snackbarService.openSnackBar(`${error.error}`);
       this.router.navigate(['../admin/'])
       });
   }

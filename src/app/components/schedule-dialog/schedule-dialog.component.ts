@@ -51,7 +51,7 @@ export class ScheduleDialogComponent implements OnInit {
       this.router.navigate(['/admin/timetable/', this.schedule.id]);
     },
       (error) => {
-       this.snackbarService.openSnackBar(error.message);
+        this.snackbarService.openSnackBar(`${error.error}`);
       });
   }
 

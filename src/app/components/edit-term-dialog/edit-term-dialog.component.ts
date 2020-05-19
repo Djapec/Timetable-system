@@ -98,8 +98,7 @@ export class EditTermDialogComponent implements OnInit {
         }
       },
       (error) => {
-        console.log(error);
-        this.snackbarService.openSnackBar(`${error.error} + - ${error.statusText}`);
+        this.snackbarService.openSnackBar(`${error.error}`);
       })
     this.dialogRef.close();
   }

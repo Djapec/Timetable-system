@@ -29,7 +29,7 @@ export class DeleteScheduleDialogComponent implements OnInit {
         location.reload();
       },
       (error) => {
-        this.snackbarService.openSnackBar(`${error} + - ${error.statusText}`);
+        this.snackbarService.openSnackBar(`${error.error}`);
       });
     this.dialogEditRef.close();
   }

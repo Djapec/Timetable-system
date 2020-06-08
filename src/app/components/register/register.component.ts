@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
               private themeService: ThemeService) { }
 
   ngOnInit(): void {
-    this.changeBackground();
     this.themeService.setTheme("indigo-pink");
   }
 
@@ -36,10 +35,10 @@ export class RegisterComponent implements OnInit {
     var currentTime = new Date().getHours();
     var login = document.getElementById("register-bg");
     if (7 <= currentTime && currentTime < 19) {
-      login.style.backgroundImage = "url(https://lh4.googleusercontent.com/-XplyTa1Za-I/VMSgIyAYkHI/AAAAAAAADxM/oL-rD6VP4ts/w1184-h666/Android-Lollipop-wallpapers-Google-Now-Wallpaper-2.png)";
+      document.getElementById("login-bg").style.backgroundImage = "url('../../assets/bg.jpg')";
     }
     else {
-      login.style.backgroundImage = "url(https://cdn.techjuice.pk/wp-content/uploads/2016/07/12.png)";
+      document.getElementById("login-bg").style.backgroundImage = "url('../../assets/bg.jpg')";
     }
   }
 

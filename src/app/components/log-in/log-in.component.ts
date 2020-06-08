@@ -34,8 +34,6 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.changeBackground();
-    // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.themeService.setTheme("indigo-pink");
   }
@@ -44,10 +42,10 @@ export class LogInComponent implements OnInit {
   {
     var currentTime = new Date().getHours();
     if (7 <= currentTime && currentTime < 19) {
-      document.getElementById("login-bg").style.backgroundImage = "url(https://lh4.googleusercontent.com/-XplyTa1Za-I/VMSgIyAYkHI/AAAAAAAADxM/oL-rD6VP4ts/w1184-h666/Android-Lollipop-wallpapers-Google-Now-Wallpaper-2.png)";
+      document.getElementById("login-bg").style.backgroundImage = "url('/assets/bg.jpg')";
     }
     else {
-      document.getElementById("login-bg").style.backgroundImage = "url(https://cdn.techjuice.pk/wp-content/uploads/2016/07/12.png)";
+      document.getElementById("login-bg").style.backgroundImage = "url('/assets/bg.jpg')";
     }
   }
 

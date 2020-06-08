@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import {TermDialogComponent} from "../term-dialog/term-dialog.component";
 import {ModuleService} from "../../services/module.service";
@@ -21,6 +21,7 @@ export class TreeComponent implements OnInit{
   schedule: Schedule;
   scheduleId: number;
   panelOpenState = false;
+
   constructor(public dialog: MatDialog,
               private moduleService: ModuleService,
               private subjectService: SubjectService,

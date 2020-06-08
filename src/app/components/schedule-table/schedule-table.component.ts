@@ -1,13 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SidenavToggleService} from '../../services/sidenav-toggle.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {TermService} from "../../services/term.service";
 import {Term} from "../../models/term";
-import {WeekdayService} from "../../services/weekday.service";
-import {SubjectService} from "../../services/subject.service";
 import {Weekday} from "../../models/weekday";
 import { Subject } from "../../models/subject";
-import {LecturerService} from "../../services/lecturer.service";
 import {Lecturer} from "../../models/lecturer";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteTermDialogComponent} from "../delete-term-dialog/delete-term-dialog.component";
@@ -30,7 +27,8 @@ export class ScheduleTableComponent implements OnInit {
               private termService: TermService,
               private scheduleService: ScheduleService,
               public dialog: MatDialog,
-              private title: Title) { }
+              private title: Title,
+              private dialogRef: MatDialog) {}
 
   scheduleId: number;
   panelOpenState: boolean;
@@ -42,16 +40,6 @@ export class ScheduleTableComponent implements OnInit {
   terms: Term[];
   isLoading = true;
 
-  colors: Color[] = [
-    {id: 1, color: "#5c6bc0"},
-    {id: 2, color: "#8e99f3"},
-    {id: 3, color: "#3f51b5"},
-    {id: 4, color: "#7986cb"},
-    {id: 5, color: "#aab6fe"},
-    {id: 6, color: "#49599a"},
-    {id: 7, color: "#9fa8da"},
-    ];
-
   changeState() {
     this.sidenavToggleService.changeState(this.state = true);
   }
@@ -59,6 +47,14 @@ export class ScheduleTableComponent implements OnInit {
     this.panelOpenState = true;
     this.changeState();
     this.scheduleId = +this.route.snapshot.params.scheduleId;
+    this.getData();
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.getData();
+    });
+  }
+
+  getData()
+  {
     this.scheduleService.getScheduleById(this.scheduleId).subscribe((data) =>{
       this.schedule = data;
       this.title.setTitle(`Schedule ${this.schedule.id} - Admin - Timetable App`);
@@ -66,8 +62,8 @@ export class ScheduleTableComponent implements OnInit {
     this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
     {
       this.isLoading = false;
-      this.terms = data;
-    })
+      this.terms = data.sort(x => x.weekdayId);
+    });
   }
 
   openDeleteDialog(termId: number): void {

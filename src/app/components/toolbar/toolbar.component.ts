@@ -60,6 +60,7 @@ export class ToolbarComponent implements OnInit {
 
   @Output() toggleSidenav = new EventEmitter<void>();
 
+
   ngOnInit(): void {
     this.themeService.setTheme("deeppurple-amber");
   }

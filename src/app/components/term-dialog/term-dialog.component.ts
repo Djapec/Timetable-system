@@ -14,6 +14,7 @@ import {Term} from "../../models/term";
 import {TermService} from "../../services/term.service";
 import {SnackbarService} from "../../services/snackbar.service";
 import {Router} from "@angular/router";
+import {SemesterTableComponent} from "../semester-table/semester-table.component";
 
 @Component({
   selector: 'app-term-dialog',
@@ -50,8 +51,7 @@ export class TermDialogComponent implements OnInit {
               private classroomService: ClassroomService,
               private subjectService: SubjectService,
               private termService: TermService,
-              private snackbarService: SnackbarService,
-              private router: Router) { }
+              private snackbarService: SnackbarService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -92,12 +92,12 @@ export class TermDialogComponent implements OnInit {
       if(this.term != null)
       {
         this.snackbarService.openSnackBar("Term added!", "Hurray!");
-        location.reload();
+
       }
     },
       (error) => {
         this.snackbarService.openSnackBar(`${error.error}`);
-      })
+      });
     this.dialogRef.close();
   }
 

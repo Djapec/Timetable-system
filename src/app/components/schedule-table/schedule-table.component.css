@@ -21,7 +21,7 @@
   grid-template-rows: auto;
   grid-template-areas:
     "time profesor-class . delete"
-    "to group room . "
+    "to group room ."
     "end profesor . edit";
 }
 

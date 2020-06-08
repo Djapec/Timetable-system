@@ -11,8 +11,6 @@ import {ExportFileComponent} from "../export-file/export-file.component";
 import {Title} from "@angular/platform-browser";
 import {ThemeService} from "../../services/theme.service";
 
-class Color {id: number; color: string}
-
 @Component({
   selector: 'app-shedule-view',
   templateUrl: './shedule-view.component.html',
@@ -35,16 +33,6 @@ export class SheduleViewComponent implements OnInit {
   terms: Term[];
   isLoading = true;
 
-  colors: Color[] = [
-    {id: 1, color: "#5c6bc0"},
-    {id: 2, color: "#8e99f3"},
-    {id: 3, color: "#3f51b5"},
-    {id: 4, color: "#7986cb"},
-    {id: 5, color: "#aab6fe"},
-    {id: 6, color: "#49599a"},
-    {id: 7, color: "#9fa8da"},
-  ];
-
   changeState() {
     this.sidenavToggleService.changeState(this.state = false);
   }
@@ -62,7 +50,8 @@ export class SheduleViewComponent implements OnInit {
     this.termService.getTermsByScheduleId(this.scheduleId).subscribe((data) =>
     {
       this.isLoading = false;
-      this.terms = data;
+      this.terms = data.sort(x => x.weekdayId);
+      console.log(this.terms);
     })
   }
 

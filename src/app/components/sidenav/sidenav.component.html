@@ -2,7 +2,8 @@
   class="app-sidenav-container">
   <mat-sidenav #sidenav="" class="app-sidenav mat-elevation-z15"
                [opened]="!(isScreenSmall | async) && state"
-               [mode]="(isScreenSmall | async) ? 'over' : 'side'">
+               [mode]="(isScreenSmall | async) ? 'over' : 'side'"
+               [disableClose]="(isScreenSmall | async) ? 'false' : 'true'">
     <mat-toolbar color="primary">
       {{title}}
     </mat-toolbar>

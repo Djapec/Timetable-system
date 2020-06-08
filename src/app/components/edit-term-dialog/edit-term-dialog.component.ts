@@ -94,7 +94,6 @@ export class EditTermDialogComponent implements OnInit {
         if(this.term != null)
         {
           this.snackbarService.openSnackBar("Term updated!", "Hurray!");
-          location.reload();
         }
       },
       (error) => {

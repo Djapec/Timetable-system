@@ -1,4 +1,4 @@
-<div class="schedule">
+<div class="schedule" *ngIf="dataSource?.data?.length > 0">
   <div style="text-align: right">
     <button mat-raised-button  class="create-button" style="margin-bottom: 30px" (click)="openCreateDialog()">
       Create new
@@ -23,13 +23,13 @@
   </ng-container>
 
   <ng-container matColumnDef="departmentId" >
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> DEPARTMENT ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.departmentId}} </td>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> DEPARTMENT </th>
+    <td mat-cell *matCellDef="let element" [matTooltip]="element.departmentId"> {{element.department}} </td>
   </ng-container>
 
   <ng-container matColumnDef="semesterId" >
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> SEMESTER ID </th>
-    <td mat-cell *matCellDef="let element" [matTooltip]="element.semester"> {{element.semesterId}} </td>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> SEMESTER </th>
+    <td mat-cell *matCellDef="let element" [matTooltip]="element.semesterId"> {{element.semester}} </td>
   </ng-container>
 
   <ng-container matColumnDef="isActive">
@@ -40,16 +40,16 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-raised-button color="primary" class="table-button" (click)="changeScheduleStatus(element)">
+      <button matTooltip="Change schedule status" mat-raised-button color="primary" class="table-button" (click)="changeScheduleStatus(element)">
         <mat-icon>cached</mat-icon>
       </button>
-      <button mat-raised-button color="primary" class="rightbutton table-button" [disabled]="!element.isActive" (click)="viewTimetableEdit(element)">
+      <button matTooltip="Edit schedule terms" mat-raised-button color="primary" class="rightbutton table-button" [disabled]="!element.isActive" (click)="viewTimetableEdit(element)">
         <mat-icon>pageview</mat-icon>
       </button>
-      <button mat-raised-button color="primary" class="rightbutton table-button" (click)="openEditScheduleDialog(element)">
+      <button matTooltip="Edit schedule" mat-raised-button color="primary" class="rightbutton table-button" (click)="openEditScheduleDialog(element)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-raised-button color="primary" class="rightbutton table-button"  (click)="openDeleteScheduleDialog(element)">
+      <button matTooltip="Delete schedule" mat-raised-button color="primary" class="rightbutton table-button"  (click)="openDeleteScheduleDialog(element)">
         <mat-icon>delete</mat-icon>
       </button>
     </td>

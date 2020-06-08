@@ -30,17 +30,21 @@ export class SemesterTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle(`Schedules - Admin - Timetable App`);
+    this.getData();
+    this.changeState();
+  }
+
+  getData(){
     this.scheduleService.getScheduleByDepartmentId(this.departmentId).subscribe((data) => {
       this.isLoading = false;
       this.dataSource.data = data;
     });
-    this.changeState();
   }
 
   updatedSchedule(schedule: Schedule)
   {
     let currentDate = new Date();
-    if((currentDate.getTime() - schedule.updatedAt) <= 3600000) {
+    if((currentDate.getTime() - schedule.createdAt) <= 3600000) {
       return {icon: "new_releases", color: "warn", text: "New schedule!"};
     }
 

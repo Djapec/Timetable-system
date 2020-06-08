@@ -39,15 +39,23 @@ a :hover{
 
 @media (max-width: 720px) {
   .sidenav-toggle {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
+    vertical-align: bottom;
   }
-}
-.sidenav-toggle mat-icon {
-  font-size: 30px;
-  height: 56px;
-  width: 56px;
-  line-height: 56px;
-  color: white;
+
+  .right-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  .sidenav-toggle mat-icon {
+    font-size: 32px;
+    color: white;
+  }
 }

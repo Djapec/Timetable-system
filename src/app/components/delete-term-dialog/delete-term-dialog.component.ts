@@ -25,7 +25,6 @@ export class DeleteTermDialogComponent implements OnInit {
   onYesClick(): void {
     this.termService.deleteTerm(this.data.termId).subscribe(() => {
       this.snackbarService.openSnackBar("Successfully deleted!");
-      location.reload();
     },
       (error) => {
         this.snackbarService.openSnackBar(`${error.error}`);

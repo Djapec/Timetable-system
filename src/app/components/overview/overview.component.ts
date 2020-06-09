@@ -39,6 +39,7 @@ export class OverviewComponent implements OnInit {
 
   department: Department;
   perPage: string;
+  statusChange: string;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -88,9 +89,13 @@ export class OverviewComponent implements OnInit {
 
   changeScheduleStatus(schedule: Schedule)
   {
+    this.translateService.get('STATUS CHANGE').subscribe((res) =>
+    {
+      this.statusChange = res;
+    });
     this.scheduleService.putSchedule(schedule.id, schedule.name, !schedule.isActive).subscribe((data) =>
     {
-      this.snackbarService.openSnackBar(`Status change to ${data.isActive}`);
+      this.snackbarService.openSnackBar(`${this.statusChange} ${data.isActive}`);
       this.getData();
     },
       (error) =>

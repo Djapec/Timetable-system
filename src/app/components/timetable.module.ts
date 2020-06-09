@@ -42,6 +42,8 @@ import {Role} from "../models/role";
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { LanguageComponent } from './language/language.component';
+import {NgxFlagIconCssModule} from "ngx-flag-icon-css";
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
@@ -91,7 +93,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ExportFileComponent,
     ThemePaletteComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    LanguageComponent
   ],
   imports: [
     CommonModule,
@@ -116,7 +119,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    NgxFlagIconCssModule
   ],
   providers: [SnackbarService, ScheduleTableComponent]
 })

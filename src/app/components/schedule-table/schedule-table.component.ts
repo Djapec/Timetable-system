@@ -12,6 +12,7 @@ import {EditTermDialogComponent} from "../edit-term-dialog/edit-term-dialog.comp
 import {Schedule} from "../../models/schedule";
 import {ScheduleService} from "../../services/schedule.service";
 import {Title} from "@angular/platform-browser";
+import { interval } from "rxjs";
 
 @Component({
   selector: 'app-schedule-table',
@@ -49,6 +50,10 @@ export class ScheduleTableComponent implements OnInit {
     this.dialog.afterAllClosed.subscribe(() => {
       this.getData();
     });
+
+    const source = interval(1000);
+
+    source.subscribe(() => this.getData());
   }
 
   getData()

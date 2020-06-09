@@ -11,6 +11,7 @@ import {Option} from "../../models/option";
 import {AuthenticationService} from "../../services/authentication.service";
 import {User} from "../../models/user";
 import {Role} from "../../models/role";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-toolbar',
@@ -20,7 +21,11 @@ import {Role} from "../../models/role";
 export class ToolbarComponent implements OnInit {
   user: User;
   loading = false;
-  constructor(public router: Router, private themeService: ThemeService, private authenticationService: AuthenticationService) {
+
+  constructor(public router: Router,
+              private themeService: ThemeService,
+              private authenticationService: AuthenticationService,
+              public translateService: TranslateService) {
     this.authenticationService.user.subscribe(x => this.user = x);
 
     this.router.events.subscribe((event) => {
@@ -64,9 +69,16 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
     const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : "deeppurple-amber";
     this.themeService.setTheme(theme);
+    const lang = localStorage.getItem('LANG') ? localStorage.getItem('LANG') : "rs";
+    this.translateService.use(lang);
   }
   themeChangeHandler(themeToSet) {
     localStorage.setItem('theme', themeToSet);
     this.themeService.setTheme(themeToSet);
+  }
+
+  languageChangeHandler(language){
+    localStorage.setItem('LANG', language);
+    this.translateService.use(language);
   }
 }

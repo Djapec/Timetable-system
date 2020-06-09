@@ -10,8 +10,9 @@
   </div>
   <div class="toolbar-right">
     <div class="right-content">
+      <app-language [matTooltip]="'LANG' | translate" [options]="translateService.getLangs()" (langChange)="languageChangeHandler($event)" style="cursor: pointer;"></app-language>
       <app-theme-palette [matTooltip]="'THEME' | translate" class="toolbar-pallet" style="margin-left: auto; cursor: pointer;"  [options]="options$ | async"
-                         (themeChange)="themeChangeHandler($event)">></app-theme-palette>
+                         (themeChange)="themeChangeHandler($event)"></app-theme-palette>
 
       <mat-icon [matTooltip]="('LOGGED' | translate) + user.username" *ngIf="isAdmin">info</mat-icon>
       <mat-icon [matTooltip]="'REGISTER' | translate" [routerLink]="['/register']" *ngIf="isAdmin" style="margin-left: auto; cursor: pointer;" class="toolbar-logout">person_add</mat-icon>

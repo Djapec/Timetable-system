@@ -7,7 +7,7 @@
   "SEARCH": "Претражи",
   "NAME": "НАЗИВ",
   "DEPARTMENT": "СМЕР",
-  "STATUS": "СТАТУС",
+  "STATUS": "STATUS",
   "ID": "ИД",
   "ACTIONS": "АКЦИЈЕ",
   "TIMETABLE": "Распоред часова",
@@ -21,7 +21,7 @@
   "EDIT SCHEDULE": "Уреди распоред!",
   "RENAME SCHEDULE": "Преименуј распоред!",
   "DELETE SCHEDULE": "Обриши распоред!",
-  "ACTIVE": "Активан",
+  "ACTIVE": "Active",
   "INACTIVE": "Неактиван",
   "MONDAY": "Понедељак",
   "TUESDAY": "Уторак",
@@ -105,6 +105,6 @@
   "PER PAGE": "Приказа по страни: ",
   "FILTER": "Филтер",
   "LANG": "Изаберите језик!",
-  "LANG OKAY": "Језик успешно промењен!",
-  "STATUS CHANGE": "Статус промењен на"
+  "LANG OKAY": "Language changed!",
+  "STATUS CHANGE": "Status change to"
 }

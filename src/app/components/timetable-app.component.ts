@@ -11,6 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class TimetableAppComponent implements OnInit {
   constructor(private translateService: TranslateService) {
     translateService.setDefaultLang('rs');
+    translateService.addLangs(['en'])
   }
 
   ngOnInit(): void {

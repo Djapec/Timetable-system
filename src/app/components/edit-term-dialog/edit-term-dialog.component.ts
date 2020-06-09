@@ -55,8 +55,7 @@ export class EditTermDialogComponent implements OnInit {
               private subjectService: SubjectService,
               private termService: TermService,
               private snackbarService: SnackbarService,
-              private translateService: TranslateService,
-              private scheduleTableComponent: ScheduleTableComponent) { }
+              private translateService: TranslateService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -102,8 +101,7 @@ export class EditTermDialogComponent implements OnInit {
       },
       (error) => {
         this.snackbarService.openSnackBar(`${error.error}`);
-      })
-    this.scheduleTableComponent.getData();
+      });
     this.dialogRef.close();
   }
 

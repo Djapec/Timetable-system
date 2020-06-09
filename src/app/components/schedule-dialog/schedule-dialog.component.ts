@@ -10,6 +10,7 @@ import {SemesterService} from "../../services/semester.service";
 import {DepartmentService} from "../../services/department.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {WeekdayService} from "../../services/weekday.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-schedule-dialog',
@@ -19,11 +20,13 @@ import {WeekdayService} from "../../services/weekday.service";
 export class ScheduleDialogComponent implements OnInit {
   departmentsControl = new FormControl('', Validators.required);
   semestersControl = new FormControl('', Validators.required);
+  nameControl = new FormControl('', Validators.required);
 
   public schedule: Schedule;
 
   departments: Department[];
   semesters: Semester[];
+  snackMessage: string;
 
   constructor(public dialogRef: MatDialogRef<ScheduleDialogComponent>,
               private scheduleService: ScheduleService,
@@ -31,20 +34,20 @@ export class ScheduleDialogComponent implements OnInit {
               private semesterService: SemesterService,
               private departmentService: DepartmentService,
               public router: Router,
-              public route: ActivatedRoute) { }
+              private translateService: TranslateService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onYesClick(): void{
-    this.scheduleService.postSchedule(Number(this.departmentsControl.value), Number(this.semestersControl.value)).subscribe(
+    this.scheduleService.postSchedule(Number(this.departmentsControl.value), Number(this.semestersControl.value), this.nameControl.value).subscribe(
       (data) =>
     {
       this.schedule = data;
       if(this.schedule == null)
       {
-        this.snackbarService.openSnackBar("Something went wrong...");
+        this.snackbarService.openSnackBar(this.snackMessage);
         this.dialogRef.close();
       }
       this.dialogRef.close();
@@ -56,10 +59,12 @@ export class ScheduleDialogComponent implements OnInit {
   }
 
   isFormValid(): boolean{
-    return this.departmentsControl.valid && this.semestersControl.valid;
+    return this.departmentsControl.valid && this.semestersControl.valid && this.nameControl.valid;
   }
 
   ngOnInit(): void {
+    this.translateService.get('ERROR').subscribe((res) => this.snackMessage = res);
+
     this.departmentService.getDepartments().subscribe((data) => {
       this.departments = data;
     },

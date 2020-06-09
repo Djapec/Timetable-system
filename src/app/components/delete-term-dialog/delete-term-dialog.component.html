@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Delete term!</h1>
+<h1 mat-dialog-title>{{'DELETE TERM' | translate}}</h1>
 <div mat-dialog-content>
-  <p>Do you want to delete term with id {{data.termId}}?</p>
+  <p>{{'DELETE TERM CONFIRMATION' | translate}} {{data.termId}}?</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="onYesClick()" cdkFocusInitial>Yes</button>
+  <button mat-button (click)="onNoClick()">{{'CANCEL' | translate}}</button>
+  <button mat-button (click)="onYesClick()" cdkFocusInitial>{{'CONFIRM' | translate}}</button>
 </div>

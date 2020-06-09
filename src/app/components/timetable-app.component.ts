@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-timetable-app',
@@ -8,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class TimetableAppComponent implements OnInit {
-  title = "Menu";
-  constructor() { }
+  constructor(private translateService: TranslateService) {
+    translateService.setDefaultLang('rs');
+  }
 
   ngOnInit(): void {
   }
-
 }

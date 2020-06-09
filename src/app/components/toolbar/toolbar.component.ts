@@ -62,9 +62,11 @@ export class ToolbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.themeService.setTheme("deeppurple-amber");
+    const theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : "deeppurple-amber";
+    this.themeService.setTheme(theme);
   }
   themeChangeHandler(themeToSet) {
+    localStorage.setItem('theme', themeToSet);
     this.themeService.setTheme(themeToSet);
   }
 }

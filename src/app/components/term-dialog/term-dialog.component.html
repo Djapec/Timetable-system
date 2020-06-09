@@ -1,93 +1,93 @@
-<h1 mat-dialog-title *ngIf="!isLoading">Subject: {{subject.name}}</h1>
+<h1 mat-dialog-title *ngIf="!isLoading">{{'SUBJECT' | translate}}: {{subject.name}}</h1>
 <div mat-dialog-content *ngIf="!isLoading">
-  <p>Fill all fields in order to add new term!</p>
+  <p>{{'ADD TERM DESC' | translate}}</p>
   <mat-form-field>
-    <mat-label>Select lecturer</mat-label>
+    <mat-label>{{'SELECT LEC' | translate}}</mat-label>
     <mat-select [formControl]="lecturersControl" required>
       <mat-option>--</mat-option>
       <mat-option *ngFor="let lecturer of lecturers" [value]="lecturer.id">
         {{lecturer.firstName}} {{lecturer.lastName}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="lecturersControl.hasError('required')">Please choose an lecturer</mat-error>
+    <mat-error *ngIf="lecturersControl.hasError('required')">{{'SELECT LEC ERR' | translate}}</mat-error>
     <mat-hint>{{lecturersControl.value?.sound}}</mat-hint>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <mat-label>Select classroom</mat-label>
+    <mat-label>{{'SELECT CLASS' | translate}}</mat-label>
     <mat-select [formControl]="classroomsControl" required>
       <mat-option>--</mat-option>
       <mat-option *ngFor="let classroom of classrooms" [value]="classroom.id">
         {{classroom.label}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="classroomsControl.hasError('required')">Please choose an classroom</mat-error>
+    <mat-error *ngIf="classroomsControl.hasError('required')">{{'SELECT CLASS ERR' | translate}}</mat-error>
     <mat-hint>{{classroomsControl.value?.sound}}</mat-hint>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <mat-label>Select a start time</mat-label>
+    <mat-label>{{'SELECT START' | translate}}</mat-label>
     <input matInput [ngxTimepicker]="startTime" [format]="24" placeholder="Start time" [formControl]="timepickerControl" min="09:00"
            max="19:00" ngxMaterialTimepickerTheme="darkTheme" required readonly/>
-    <mat-error *ngIf="timepickerControl.hasError('required')">Please choose a start time</mat-error>
+    <mat-error *ngIf="timepickerControl.hasError('required')">{{'SELECT START ERR' | translate}}</mat-error>
     <mat-hint>{{timepickerControl.value?.sound}}</mat-hint>
   </mat-form-field>
   <ngx-material-timepicker appendToInput [minutesGap]="5" #startTime></ngx-material-timepicker>
   <br>
   <mat-form-field>
-    <mat-label>Select a end time</mat-label>
+    <mat-label>{{'SELECT END' | translate}}</mat-label>
     <input matInput [ngxTimepicker]="endTime" [format]="24" placeholder="End time" [formControl]="timepickerEndControl" min='{{timepickerControl.value}}'
            max="21:00" ngxMaterialTimepickerTheme="darkTheme" required readonly/>
-    <mat-error *ngIf="timepickerEndControl.hasError('required')">Please choose a end time</mat-error>
+    <mat-error *ngIf="timepickerEndControl.hasError('required')">{{'SELECT END ERR' | translate}}</mat-error>
     <mat-hint>{{timepickerEndControl.value?.sound}}</mat-hint>
   </mat-form-field>
   <ngx-material-timepicker appendToInput [minutesGap]="5" #endTime></ngx-material-timepicker>
   <br>
   <mat-form-field>
-    <mat-label>Select weekday</mat-label>
+    <mat-label>{{'SELECT WEEK' | translate}}</mat-label>
     <mat-select [formControl]="weekdayControl" required>
       <mat-option>--</mat-option>
       <mat-option *ngFor="let weekday of weekdays" [value]="weekday.id">
-        {{weekday.name}}
+        {{weekday.name | uppercase | translate}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="weekdayControl.hasError('required')">Please choose an weekday</mat-error>
+    <mat-error *ngIf="weekdayControl.hasError('required')">{{'SELECT WEEK ERR' | translate}}</mat-error>
     <mat-hint>{{weekdayControl.value?.sound}}</mat-hint>
   </mat-form-field>
   <br>
   <mat-radio-group [formControl]="lectureTypeControl" aria-label="Select an lecture type" (change)="isExercise()" required>
-    <mat-radio-button value="1">Lecture</mat-radio-button>
-    <mat-radio-button value="2">Exercise</mat-radio-button>
-    <mat-radio-button value="3">Lab exercise</mat-radio-button>
+    <mat-radio-button value="1">{{'LECTURE' | translate}}</mat-radio-button>
+    <mat-radio-button value="2">{{'EXERCISE' | translate}}</mat-radio-button>
+    <mat-radio-button value="3">{{'LAB EXERCISE' | translate}}</mat-radio-button>
   </mat-radio-group>
   <br>
   <mat-form-field>
-    <mat-label>Select number of lectures</mat-label>
+    <mat-label>{{'SELECT NUM LEC' | translate}}</mat-label>
     <mat-select [formControl]="numberOfLecturesTypeControl">
       <mat-option>--</mat-option>
       <mat-option *ngFor="let number of numbers" [value]="number" >
         {{number}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="numberOfLecturesTypeControl.hasError('required')">Please choose an number of lectures</mat-error>
+    <mat-error *ngIf="numberOfLecturesTypeControl.hasError('required')">{{'SELECT NUM LEC ERR' | translate}}</mat-error>
     <mat-hint>{{numberOfLecturesTypeControl.value?.sound}}</mat-hint>
   </mat-form-field>
 <mat-form-field>
-  <mat-label>Select group</mat-label>
+  <mat-label>{{'SELECT GROUP' | translate}}</mat-label>
   <mat-select [formControl]="groupControl">
     <mat-option>--</mat-option>
     <mat-option *ngFor="let number of numbers" [value]="number" >
       {{number}}
     </mat-option>
   </mat-select>
-  <mat-error *ngIf="groupControl.hasError('required')">Please choose an group</mat-error>
+  <mat-error *ngIf="groupControl.hasError('required')">{{'SELECT GROUP ERR' | translate}}</mat-error>
   <mat-hint>{{groupControl.value?.sound}}</mat-hint>
 </mat-form-field>
 </div>
 <br>
 <div mat-dialog-actions *ngIf="!isLoading">
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="onYesClick()" [disabled]="!isFormValid()" cdkFocusInitial color="primary">Ok</button>
+  <button mat-button (click)="onNoClick()">{{'CANCEL' | translate}}</button>
+  <button mat-button (click)="onYesClick()" [disabled]="!isFormValid()" cdkFocusInitial color="primary">{{'CREATE' | translate}}</button>
 </div>
 <mat-card *ngIf="isLoading"
           style="display: flex; justify-content: center; align-items: center">

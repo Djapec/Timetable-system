@@ -13,8 +13,6 @@ import {Schedule} from "../../models/schedule";
 import {ScheduleService} from "../../services/schedule.service";
 import {Title} from "@angular/platform-browser";
 
-class Color {id: number; color: string}
-
 @Component({
   selector: 'app-schedule-table',
   templateUrl: './schedule-table.component.html',
@@ -27,8 +25,7 @@ export class ScheduleTableComponent implements OnInit {
               private termService: TermService,
               private scheduleService: ScheduleService,
               public dialog: MatDialog,
-              private title: Title,
-              private dialogRef: MatDialog) {}
+              private title: Title) {}
 
   scheduleId: number;
   panelOpenState: boolean;
@@ -39,6 +36,7 @@ export class ScheduleTableComponent implements OnInit {
   schedule: Schedule;
   terms: Term[];
   isLoading = true;
+
 
   changeState() {
     this.sidenavToggleService.changeState(this.state = true);
@@ -55,6 +53,7 @@ export class ScheduleTableComponent implements OnInit {
 
   getData()
   {
+    this.scheduleId = +this.route.snapshot.params.scheduleId;
     this.scheduleService.getScheduleById(this.scheduleId).subscribe((data) =>{
       this.schedule = data;
       this.title.setTitle(`Schedule ${this.schedule.id} - Admin - Timetable App`);

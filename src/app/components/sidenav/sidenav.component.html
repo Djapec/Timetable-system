@@ -5,7 +5,7 @@
                [mode]="(isScreenSmall | async) ? 'over' : 'side'"
                [disableClose]="(isScreenSmall | async) ? 'false' : 'true'">
     <mat-toolbar color="primary">
-      {{title}}
+      {{title | translate}}
     </mat-toolbar>
     <app-tree *ngIf="router.url.includes('admin/timetable/')"></app-tree>
   </mat-sidenav>

@@ -15,6 +15,8 @@ import {TermService} from "../../services/term.service";
 import {SnackbarService} from "../../services/snackbar.service";
 import {Router} from "@angular/router";
 import {TermPutObject} from "../../models/termPutObject";
+import {TranslateService} from "@ngx-translate/core";
+import {ScheduleTableComponent} from "../schedule-table/schedule-table.component";
 
 @Component({
   selector: 'app-edit-term-dialog',
@@ -41,6 +43,7 @@ export class EditTermDialogComponent implements OnInit {
   subject: Subject;
   term: Term;
   isLoading = true;
+  snackMessage: string;
 
   numbers: number[] = [1, 2, 3, 4, 5];
 
@@ -52,7 +55,8 @@ export class EditTermDialogComponent implements OnInit {
               private subjectService: SubjectService,
               private termService: TermService,
               private snackbarService: SnackbarService,
-              private router: Router) { }
+              private translateService: TranslateService,
+              private scheduleTableComponent: ScheduleTableComponent) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -93,12 +97,13 @@ export class EditTermDialogComponent implements OnInit {
         this.term = data;
         if(this.term != null)
         {
-          this.snackbarService.openSnackBar("Term updated!", "Hurray!");
+          this.snackbarService.openSnackBar(this.snackMessage);
         }
       },
       (error) => {
         this.snackbarService.openSnackBar(`${error.error}`);
       })
+    this.scheduleTableComponent.getData();
     this.dialogRef.close();
   }
 
@@ -118,26 +123,27 @@ export class EditTermDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.translateService.get('CHANGED').subscribe((res) => this.snackMessage = res);
     this.termService.getTermById(this.ids.termId).subscribe((data) => {
       this.classroomsControl.setValue(data.classroomId);
       this.lecturersControl.setValue(data.lecturerId);
       this.timepickerControl.setValue(data.startTime);
-      this.timepickerEndControl.setValue(data.endTime);
       this.weekdayControl.setValue(data.weekdayId);
       if(data.numberOfLectures > 0)
       {
-        this.lectureTypeControl.setValue(1);
+        this.lectureTypeControl.setValue('1');
       }
       else if (data.numberOfExercises > 0)
       {
-        this.lectureTypeControl.setValue(2);
+        this.lectureTypeControl.setValue('2');
       }
       else
         {
-          this.lectureTypeControl.setValue(3);
+          this.lectureTypeControl.setValue('3');
       }
       this.numberOfLecturesTypeControl.setValue(data.numberOfLectures);
       this.groupControl.setValue(data.group);
+      this.timepickerEndControl.setValue(data.endTime);
     });
 
     this.subjectService.getSubjectById(this.ids.subjectId).subscribe((data) => {

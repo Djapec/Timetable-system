@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Delete schedule!</h1>
+<h1 mat-dialog-title>{{'DELETE SCHEDULE' | translate}}</h1>
 <div mat-dialog-content>
-  <p>Do you want to delete schedule with id {{schedule.id}}?</p>
+  <p>{{'DELETE SCHEDULE CONFIRMATION' | translate}} {{schedule.id}}?</p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="onYesClick()" cdkFocusInitial>Yes</button>
+  <button mat-button (click)="onNoClick()">{{'CANCEL' | translate}}</button>
+  <button mat-button (click)="onYesClick()" cdkFocusInitial>{{'CONFIRM' | translate}}</button>
 </div>

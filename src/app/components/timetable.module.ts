@@ -15,7 +15,7 @@ import { TimetableComponent } from './timetable/timetable.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TermDialogComponent } from './term-dialog/term-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { ScheduleTableComponent } from './schedule-table/schedule-table.component';
 import { OverviewComponent } from './overview/overview.component';
@@ -40,6 +40,9 @@ import { RegisterComponent } from './register/register.component';
 import {AuthGuard} from "../helpers/auth.guard";
 import {Role} from "../models/role";
 
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'register',
@@ -61,6 +64,10 @@ const routes: Routes = [
     ]},
   { path: '**', redirectTo: ''}
 ];
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../../assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -101,8 +108,16 @@ const routes: Routes = [
     MatTabsModule,
     NgPipesModule,
     ExportAsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'rs',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
-  providers: [SnackbarService]
+  providers: [SnackbarService, ScheduleTableComponent]
 })
 export class TimetableModule { }

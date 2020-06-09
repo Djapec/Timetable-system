@@ -5,12 +5,12 @@
   </ng-container>
 
   <ng-container matColumnDef="semester">
-    <th mat-header-cell *matHeaderCellDef> SEMESTER </th>
+    <th mat-header-cell *matHeaderCellDef> {{ 'SEMESTER' | translate}} </th>
     <td mat-cell *matCellDef="let element"> {{element.semester}} </td>
   </ng-container>
 
   <ng-container matColumnDef="updatedAt">
-    <th mat-header-cell *matHeaderCellDef> UPDATED AT </th>
+    <th mat-header-cell *matHeaderCellDef> {{'UPDATED AT' | translate}} </th>
     <td mat-cell *matCellDef="let element"> {{element.updatedAt | date:'medium'}} </td>
   </ng-container>
 
@@ -35,6 +35,6 @@
 </mat-card>
 
 <mat-card *ngIf="dataSource?.data?.length <= 0" style="text-align: center">
-  <mat-card-title>There are currently no active schedules.</mat-card-title>
-  <mat-card-subtitle>Please try again later...</mat-card-subtitle>
+  <mat-card-title>{{'NO ACTIVE' | translate }}</mat-card-title>
+  <mat-card-subtitle>{{ 'TRY LATER' | translate }}</mat-card-subtitle>
 </mat-card>

@@ -9,6 +9,7 @@ import {Subject} from "../../models/subject";
 import {ScheduleService} from "../../services/schedule.service";
 import {Schedule} from "../../models/schedule";
 import {SnackbarService} from "../../services/snackbar.service";
+import {ScheduleTableComponent} from "../schedule-table/schedule-table.component";
 
 @Component({
   selector: 'app-tree',
@@ -28,7 +29,8 @@ export class TreeComponent implements OnInit{
               private scheduleService: ScheduleService,
               private snackbarService: SnackbarService,
               private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router,
+              private scheduleTableComponent: ScheduleTableComponent,) {}
 
   ngOnInit(): void {
     this.scheduleId = +this.route.children[0].firstChild.snapshot.params.scheduleId;
@@ -47,6 +49,10 @@ export class TreeComponent implements OnInit{
       this.snackbarService.openSnackBar(`${error.error}`);
       this.router.navigate(['../admin/'])
       });
+
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.scheduleTableComponent.getData();
+    });
   }
 
   getSubjects(semesterId: number, moduleId: number)

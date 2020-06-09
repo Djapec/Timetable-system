@@ -2,13 +2,13 @@
     <mat-card class="example-card">
       <mat-card-header>
         <div class="header-text" style="float: left">
-          <mat-card-title >{{schedule.name}} ({{schedule.department}} - {{schedule.semester}})</mat-card-title>
-          <mat-card-subtitle>{{schedule.isActive? "Active" : "Inactive"}}</mat-card-subtitle>
+          <mat-card-title >{{schedule.name}} ({{schedule.department | translate}} - {{schedule.semester}})</mat-card-title>
+          <mat-card-subtitle>{{schedule.isActive? ('ACTIVE' | translate) : ('INACTIVE' | translate)}}</mat-card-subtitle>
         </div>
         <div style="text-align: right">
           <button mat-raised-button  class="download-button"(click)="openBottomSheet()" >
             <!--<mat-icon>download</mat-icon>-->
-            Download
+            {{'DOWNLOAD' | translate}}
           </button>
         </div>
       </mat-card-header>
@@ -16,18 +16,18 @@
         <mat-expansion-panel class="day-panel" [expanded]="true" *ngFor="let term of terms | groupBy: 'weekday' | pairs | orderBy: 'weekdayId'">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <h3 class="day-slot"> {{(term[0])}} </h3>
+              <h3 class="day-slot"> {{(term[0]) | uppercase | translate}}  </h3>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-card  class="class-card" [class]="getTermClassName(val)"  *ngFor="let val of term[1] | orderBy: ['startTime', 'endTime']">
             <div class="class class-1 ">
-              <h4 class="subject-title"> <i>{{val.module}}</i> - {{val.isOptional? 'Izborni blok: ' + val.optionalSubjectNumber  : 'Obavezni'}} - <b>{{val.subject}}</b>({{val.numberOfLectures}}+{{val.numberOfExercises}}+{{val.numberOfLabExercises}})</h4>
+              <h4 class="subject-title"> <i>{{val.module}}</i> - {{val.isOptional? ('OPTIONAL' | translate) + val.optionalSubjectNumber  : ('NOT OPTIONAL' | translate)}} - <b>{{val.subject}}</b>({{val.numberOfLectures}}+{{val.numberOfExercises}}+{{val.numberOfLabExercises}})</h4>
               <span class="class-time">{{val.startTime}}</span>
-              <span class="class-group" *ngIf="val.group != 0"><b>Group {{val.group}}</b></span>
+              <span class="class-group" *ngIf="val.group != 0"><b>{{'GROUP' | translate}} {{val.group}}</b></span>
               <span class="class-to">-</span>
               <span class="class-end-time">{{val.endTime}}</span>
               <span class="class-room"> {{val.classroom}} </span>
-              <span class="class-professor">{{val.lecturerFullName}}</span>
+              <span class="class-professor">{{'LECTURER' | translate }} {{val.lecturerFullName}}</span>
             </div>
           </mat-card>
         </mat-expansion-panel>

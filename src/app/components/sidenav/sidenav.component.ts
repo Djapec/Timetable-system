@@ -14,7 +14,7 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 })
 
 export class SidenavComponent implements OnInit {
-  title = 'Menu';
+  title = 'MENU';
   isScreenSmall: Observable<boolean>;
   state = true;
 

@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Schedule} from "../../models/schedule";
 import {ScheduleService} from "../../services/schedule.service";
 import {SnackbarService} from "../../services/snackbar.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-delete-schedule-dialog',
@@ -11,12 +12,16 @@ import {SnackbarService} from "../../services/snackbar.service";
 })
 export class DeleteScheduleDialogComponent implements OnInit {
 
+  snackMessage: string;
+
   constructor(public dialogEditRef: MatDialogRef<DeleteScheduleDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public schedule: Schedule,
               private scheduleService: ScheduleService,
-              private snackbarService: SnackbarService) { }
+              private snackbarService: SnackbarService,
+              private translateService: TranslateService) { }
 
   ngOnInit(): void {
+    this.translateService.get('DELETED').subscribe((res) => this.snackMessage = res);
   }
 
   onNoClick(): void {
@@ -25,8 +30,7 @@ export class DeleteScheduleDialogComponent implements OnInit {
 
   onYesClick(): void {
     this.scheduleService.deleteSchedule(this.schedule.id).subscribe((data) => {
-        this.snackbarService.openSnackBar("Successfully deleted!");
-        location.reload();
+        this.snackbarService.openSnackBar(this.snackMessage);
       },
       (error) => {
         this.snackbarService.openSnackBar(`${error.error}`);

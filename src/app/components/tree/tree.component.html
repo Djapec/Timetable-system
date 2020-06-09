@@ -3,14 +3,14 @@
     <mat-expansion-panel-header (click)="getSubjects(schedule.semesterId, module.id)">
       <span hidden>{{module.id}}</span>
       <mat-panel-title>
-        {{module.name}}
+        {{module.name | translate}}
       </mat-panel-title>
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
-      <div *ngFor="let subject of subjects">
-        <mat-list-item><button [matTooltip]="subject.name" mat-flat-button class="subject-button" (click)="openDialog(subject.id, module.id, schedule.semesterId, schedule.id)">{{subject.name}}</button></mat-list-item>
+      <div *ngFor="let subject of subjects | orderBy: 'subject.isOptional'">
+        <mat-list-item><button [matTooltip]="subject.isOptional? ('OPTIONAL ONLY' | translate) + ' - ' + subject.name : ('NOT OPTIONAL' | translate) + ' - ' + subject.name" [style]="subject.isOptional? 'font-style: italic;': ''" mat-flat-button class="subject-button" (click)="openDialog(subject.id, module.id, schedule.semesterId, schedule.id)">{{subject.name}}</button></mat-list-item>
         <mat-divider></mat-divider>
       </div>
     </mat-list>

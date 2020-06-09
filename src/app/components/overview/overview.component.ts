@@ -15,6 +15,7 @@ import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {DepartmentService} from "../../services/department.service";
 import {Department} from "../../models/department";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-overview',
@@ -31,11 +32,13 @@ export class OverviewComponent implements OnInit {
               private snackbarService: SnackbarService,
               private router: Router,
               private title: Title,
-              private departmentService: DepartmentService) { }
+              private departmentService: DepartmentService,
+              private translateService: TranslateService) { }
   displayedColumns: string[] = ['id', 'name', 'departmentId', 'semesterId', 'isActive' , 'actions'];
   dataSource = new MatTableDataSource();
 
   department: Department;
+  perPage: string;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -50,14 +53,33 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.translateService.get('PER PAGE').subscribe((res) =>
+    {
+      this.perPage = res;
+      this.paginator._intl.itemsPerPageLabel = this.perPage;
+    });
+
     this.title.setTitle("Overview - Admin - Timetable App");
     this.dataSource.sort = this.sort;
+
     this.dataSource.paginator = this.paginator;
+
+    this.getData();
+    this.dialog.afterAllClosed.subscribe(() => {
+      this.getData();
+    });
+    this.dialogEdit.afterAllClosed.subscribe(() => {
+      this.getData();
+    });
+    this.changeState();
+  }
+
+  getData()
+  {
     this.scheduleService.getSchedules().subscribe(data => {
       this.isLoading = false;
       this.dataSource.data = data;
     });
-    this.changeState();
   }
 
   openCreateDialog() {
@@ -69,7 +91,7 @@ export class OverviewComponent implements OnInit {
     this.scheduleService.putSchedule(schedule.id, schedule.name, !schedule.isActive).subscribe((data) =>
     {
       this.snackbarService.openSnackBar(`Status change to ${data.isActive}`);
-      location.reload();
+      this.getData();
     },
       (error) =>
       {

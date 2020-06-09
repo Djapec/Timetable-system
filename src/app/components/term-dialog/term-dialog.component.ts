@@ -15,6 +15,8 @@ import {TermService} from "../../services/term.service";
 import {SnackbarService} from "../../services/snackbar.service";
 import {Router} from "@angular/router";
 import {SemesterTableComponent} from "../semester-table/semester-table.component";
+import {ScheduleTableComponent} from "../schedule-table/schedule-table.component";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-term-dialog',
@@ -41,6 +43,7 @@ export class TermDialogComponent implements OnInit {
   subject: Subject;
   term: Term;
   isLoading = true;
+  snackMessage: string;
 
   numbers: number[] = [1, 2, 3, 4, 5];
 
@@ -51,7 +54,8 @@ export class TermDialogComponent implements OnInit {
               private classroomService: ClassroomService,
               private subjectService: SubjectService,
               private termService: TermService,
-              private snackbarService: SnackbarService) { }
+              private snackbarService: SnackbarService,
+              private translateService: TranslateService) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -91,8 +95,7 @@ export class TermDialogComponent implements OnInit {
       this.term = data;
       if(this.term != null)
       {
-        this.snackbarService.openSnackBar("Term added!", "Hurray!");
-
+        this.snackbarService.openSnackBar(this.snackMessage);
       }
     },
       (error) => {
@@ -117,6 +120,8 @@ export class TermDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.translateService.get('ADDED').subscribe((res) => this.snackMessage = res);
+
     this.subjectService.getSubjectById(this.ids.subjectId).subscribe((data) => {
       this.subject = data;});
     this.lecturerService.getLecturersBySubject(this.ids.subjectId,this.ids.moduleId,this.ids.semesterId).subscribe((data)=>{

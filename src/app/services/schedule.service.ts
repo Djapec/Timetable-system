@@ -28,8 +28,8 @@ export class ScheduleService {
     return this.httpClient.get<Schedule[]>(environment.apiUrl + `Schedules/`);
   }
 
-  public postSchedule(departmentId: number, semesterId: number): Observable<Schedule> {
-    return this.httpClient.post<Schedule>(environment.apiUrl + `Schedules`, { departmentId: departmentId, semesterId: semesterId }, {
+  public postSchedule(departmentId: number, semesterId: number, name: string): Observable<Schedule> {
+    return this.httpClient.post<Schedule>(environment.apiUrl + `Schedules`, { departmentId: departmentId, semesterId: semesterId, name: name }, {
       headers: {
         'Content-Type' : 'application/json; charset=UTF-8'
       }

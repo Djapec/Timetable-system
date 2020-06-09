@@ -1,0 +1,10 @@
+.icon{
+  margin-left: 20px!important;
+  font-size: 32px;
+}
+
+@media (max-width: 720px) {
+  .icon{
+    vertical-align: middle;
+  }
+}

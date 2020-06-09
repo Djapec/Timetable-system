@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>{{'SCHEDULE' | translate}}: {{schedule.name}}</h1>
+<div mat-dialog-content class="dialog-edit">
+  <br>
+  <mat-form-field>
+    <mat-label>{{'NAME' | translate}}</mat-label>
+    <input matInput [formControl]="nameFormControl">
+    <mat-hint>{{'ENTER NAME' | translate}}</mat-hint>
+    <mat-error *ngIf="nameFormControl.hasError('required')">
+      {{'ENTER NAME ERR' | translate}}
+    </mat-error>
+  </mat-form-field>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'CANCEL' | translate}}</button>
+  <button mat-button (click)="onYesClick()" [disabled]="!isFormValid()" cdkFocusInitial color="primary">{{'UPDATE' | translate}}</button>
+</div>

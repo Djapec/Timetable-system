@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>{{'CREATE SCHEDULE' | translate}}</h1>
+<div mat-dialog-content>
+  <p>{{'CREATE SCHEDULE DESCRIPTION' | translate}}</p>
+  <mat-form-field>
+    <mat-label>{{'SELECT DEP' | translate}}</mat-label>
+    <mat-select [formControl]="departmentsControl" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let department of departments" [value]="department.id">
+        {{department.name | translate}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="departmentsControl.hasError('required')">{{'SELECT DEP ERROR' | translate}}</mat-error>
+    <mat-hint>{{departmentsControl.value?.sound}}</mat-hint>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>{{'SELECT SEM' | translate}}</mat-label>
+    <mat-select [formControl]="semestersControl" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let semester of semesters" [value]="semester.id">
+        {{semester.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="semestersControl.hasError('required')">{{'SELECT DEP ERROR' | translate}}</mat-error>
+    <mat-hint>{{semestersControl.value?.sound}}</mat-hint>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>{{'ENTER NAME' | translate}}</mat-label>
+    <input [formControl]="nameControl" matInput required/>
+    <mat-error *ngIf="nameControl.hasError('required')">{{'ENTER NAME ERR' | translate}}</mat-error>
+    <mat-hint>{{nameControl.value?.sound}}</mat-hint>
+  </mat-form-field>
+  <br>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'CANCEL' | translate}}</button>
+  <button mat-button (click)="onYesClick()" [disabled]="!isFormValid()" cdkFocusInitial color="primary">{{'CREATE' | translate}}</button>
+</div>
+

@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-title class="title"> <h1>{{'ACTIVE TIMETABLES' | translate}}</h1> </mat-card-title>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab *ngFor="let department of departments" [label]="department.name | translate">
+        <app-semester-table [departmentId]=department.id></app-semester-table>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+<mat-card *ngIf="isLoading"
+          style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>
+
+

@@ -1,0 +1,41 @@
+<div class="schedule" *ngIf="schedule">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{schedule.name}} ({{schedule.department | translate}} - {{schedule.semester}} - {{schedule.createdAt | date}})</mat-card-title>
+      <mat-card-subtitle>{{schedule.isActive? ('ACTIVE' | translate) : ('INACTIVE' | translate)}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-expansion-panel class="day-panel" [expanded]="true" *ngFor="let term of terms | groupBy: 'weekday' | pairs | orderBy: 'weekdayId'">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3 class="day-slot"> {{(term[0]) | uppercase | translate}} </h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card  class="class-card" [class]="getTermClassName(val)" *ngFor="let val of term[1] | orderBy: ['startTime', 'endTime']">
+          <div class="class class-1 ">
+            <h4 class="subject-title"> <i>{{val.module | translate}}</i> - {{val.isOptional? ('OPTIONAL' | translate) + val.optionalSubjectNumber  : ('NOT OPTIONAL' | translate)}} - <b>{{val.subject}}</b> ({{val.numberOfLectures}}+{{val.numberOfExercises}}+{{val.numberOfLabExercises}})</h4>
+            <span class="class-time">{{val.startTime}}</span>
+            <span class="class-group" *ngIf="val.group != 0"><b>{{'GROUP' | translate}} {{val.group}}</b></span>
+            <span class="class-to">-</span>
+            <span class="class-end-time">{{val.endTime}}</span>
+            <span class="class-room">{{val.classroom}}</span>
+            <span class="class-professor">{{'LECTURER' | translate }} {{val.lecturerFullName}}</span>
+            <button mat-icon-button [matTooltip]="'DELETE TERM' | translate" color="black" class="delete-button" (click)="openDeleteDialog(val.id)">
+              <mat-icon >delete</mat-icon>
+            </button>
+            <button mat-icon-button color="black" [matTooltip]="'EDIT TERM' | translate" class="edit-button" (click)="openUpdateDialog(val.id, val.subjectId, val.semesterId, val.moduleId, val.scheduleId)">
+              <mat-icon >edit</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
+</div>
+<mat-card *ngIf="isLoading"
+          style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>

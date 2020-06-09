@@ -1,0 +1,22 @@
+table {
+  width: 100%;
+}
+.rightbutton {
+  margin-left: 10px;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+mat-icon{
+  color: white;
+}
+@media only screen and (max-width: 780px) {
+  .rightbutton {
+    margin-left: 0px;
+  }
+}
+

@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="toolbar">
+  <div class="toolbar-left">
+  <button
+    *ngIf="router.url.includes('admin')"
+    mat-button  class="sidenav-toggle" (click)="toggleSidenav.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+    <a [routerLink]="[' ']" > {{'TIMETABLE' | translate}} </a>
+    <a [routerLink]="['/admin/']" *ngIf="isAdmin"> {{'ADMIN' | translate}} </a>
+  </div>
+  <div class="toolbar-right">
+    <div class="right-content">
+      <app-language [matTooltip]="'LANG' | translate" [options]="translateService.getLangs()" (langChange)="languageChangeHandler($event)" style="cursor: pointer;"></app-language>
+      <app-theme-palette [matTooltip]="'THEME' | translate" class="toolbar-pallet" style="margin-left: auto; cursor: pointer;"  [options]="options$ | async"
+                         (themeChange)="themeChangeHandler($event)"></app-theme-palette>
+
+      <mat-icon [matTooltip]="('LOGGED' | translate) + user.username" *ngIf="isAdmin">info</mat-icon>
+      <mat-icon [matTooltip]="'REGISTER' | translate" [routerLink]="['/register']" *ngIf="isAdmin" style="margin-left: auto; cursor: pointer;" class="toolbar-logout">person_add</mat-icon>
+      <mat-icon [matTooltip]="'LOGOUT' | translate" (click)="logout()" *ngIf="isAdmin" style="margin-left: auto; cursor: pointer;" class="toolbar-logout">exit_to_app</mat-icon>
+      <mat-icon [matTooltip]="'LOGIN' | translate" [routerLink]="['/login']" *ngIf="!isLoggedIn" style="margin-left: auto; cursor: pointer;" class="toolbar-logout">person</mat-icon>
+    </div>
+  </div>
+</mat-toolbar>
+<mat-progress-bar
+  *ngIf="loading" color="accent" mode="indeterminate">
+</mat-progress-bar>

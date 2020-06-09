@@ -1,0 +1,77 @@
+.day-panel{
+  margin-top: 5px;
+  margin-bottom: 7px;
+}
+.download-button{
+margin-bottom: 30px;
+  float: right;
+}
+.class-card{
+  margin-top: 5px;
+  margin-bottom: 7px;
+  color: white!important;
+}
+.day-class-slot{
+  background-color: antiquewhite;
+}
+.day-slot{
+  text-align: center;
+  text-transform: uppercase;
+}
+.class{
+  display: grid;
+  grid-template-columns: 50px 1fr 50px 70px;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "time  profesor-class . ."
+    "to group room ."
+    "end  profesor . .";
+}
+
+.class-time{
+  grid-area: time;
+  justify-self: center;
+  place-self: center;
+}
+
+.class-end-time{
+  grid-area: end;
+  justify-self: end;
+  place-self: center;
+}
+
+.class-to{
+  grid-area: to;
+  justify-self: center;
+  place-self: center;
+}
+
+.class-group{
+  grid-area: group;
+  justify-self: center;
+  place-self: center;
+}
+
+.class-professor{
+  grid-area: profesor;
+  place-self: center;
+  align-self: center;
+}
+.subject-title{
+  grid-area: profesor-class;
+  place-self: center;
+  justify-self: center;
+  margin: 0;
+}
+.class-room{
+  grid-area: room;
+  justify-self: center;
+  place-self: center;
+}
+.mat-card-header{
+  display: flow-root;
+}
+.mat-card-header-text{
+  float: left!important;
+}
+

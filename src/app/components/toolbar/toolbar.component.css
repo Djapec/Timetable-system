@@ -1,0 +1,61 @@
+.sidenav-toggle {
+  display: none;
+  padding: 0;
+  margin: 8px;
+  min-width: 56px;
+}
+a{
+  text-decoration: none;
+  color: white;
+  margin-left: 10px;
+}
+a :hover{
+  color: lightgray;
+}
+
+.toolbar{
+  display: grid;
+  grid-template-columns: 3fr 3fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "left right";
+}
+
+.toolbar-left{
+  grid-area: left;
+  justify-self: start;
+}
+
+.toolbar-right{
+  grid-area: right;
+  justify-self: end;
+}
+
+.icon,
+.toolbar-right mat-icon{
+  margin-left: 20px!important;
+  font-size: 32px;
+}
+
+@media (max-width: 720px) {
+  .sidenav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    vertical-align: bottom;
+  }
+
+  .right-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  .sidenav-toggle mat-icon {
+    font-size: 32px;
+    color: white;
+  }
+}

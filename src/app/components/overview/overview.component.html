@@ -1,0 +1,71 @@
+<div class="schedule">
+  <div style="text-align: right">
+    <button mat-raised-button  class="create-button" style="margin-bottom: 30px" (click)="openCreateDialog()">
+      {{'CREATE NEW' | translate}}
+    </button>
+  </div>
+<mat-card>
+<mat-form-field>
+  <mat-label>{{'FILTER' | translate}}</mat-label>
+  <input matInput (keyup)="applyFilter($event)" [placeholder]="'SEARCH' | translate">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort *ngIf="dataSource?.data?.length > 0">
+
+  <ng-container matColumnDef="id" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ID' | translate}} </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'NAME' | translate}} </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="departmentId" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'DEPARTMENT' | translate}} </th>
+    <td mat-cell *matCellDef="let element" [matTooltip]="element.departmentId"> {{element.department | translate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="semesterId" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'SEMESTER' | translate}} </th>
+    <td mat-cell *matCellDef="let element" [matTooltip]="element.semesterId"> {{element.semester}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="isActive">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'STATUS' | translate}} </th>
+    <td mat-cell *matCellDef="let element"> {{element.isActive? ('ACTIVE' | translate) : ('INACTIVE' | translate)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> {{'ACTIONS' | translate}} </th>
+    <td mat-cell *matCellDef="let element">
+      <button [matTooltip]="'CHANGE STATUS' | translate" mat-raised-button color="primary" class="table-button" (click)="changeScheduleStatus(element)">
+        <mat-icon>cached</mat-icon>
+      </button>
+      <button [matTooltip]="'EDIT SCHEDULE' | translate" mat-raised-button color="primary" class="rightbutton table-button" [disabled]="!element.isActive" (click)="viewTimetableEdit(element)">
+        <mat-icon>pageview</mat-icon>
+      </button>
+      <button [matTooltip]="'RENAME SCHEDULE' | translate" mat-raised-button color="primary" class="rightbutton table-button" (click)="openEditScheduleDialog(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button [matTooltip]="'DELETE SCHEDULE' | translate" mat-raised-button color="primary" class="rightbutton table-button"  (click)="openDeleteScheduleDialog(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 30, 50, 100]" showFirstLastButtons></mat-paginator>
+</mat-card>
+</div>
+<mat-card *ngIf="isLoading"
+          style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>
+<!--<p class="test" ><mat-checkbox [(opened)]="opened">sidenav.opened</mat-checkbox></p>-->

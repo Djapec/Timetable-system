@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+    "target": "https://timetable-app-8000.herokuapp.com",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

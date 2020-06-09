@@ -1,0 +1,15 @@
+<mat-icon
+  class="icon"
+  [matMenuTriggerFor]="menuLang">
+  language
+</mat-icon>
+<mat-menu #menuLang="matMenu">
+  <button
+    *ngFor="let option of options"
+    mat-menu-item
+    (click)="changeLang(option)"
+    (change)="translateService.use(option)">
+    <span [style]="option === lang ? 'font-weight: bold;font-style: italic;' : ''">{{ option | uppercase }} <flag-icon [country]="option == 'en' ? 'gb' : option" squared></flag-icon></span>
+  </button>
+</mat-menu>
+

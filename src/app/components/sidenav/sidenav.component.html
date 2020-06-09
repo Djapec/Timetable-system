@@ -1,0 +1,18 @@
+<mat-sidenav-container
+  class="app-sidenav-container">
+  <mat-sidenav #sidenav="" class="app-sidenav mat-elevation-z15"
+               [opened]="!(isScreenSmall | async) && state"
+               [mode]="(isScreenSmall | async) ? 'over' : 'side'"
+               [disableClose]="(isScreenSmall | async) ? 'false' : 'true'">
+    <mat-toolbar color="primary">
+      {{title | translate}}
+    </mat-toolbar>
+    <app-tree *ngIf="router.url.includes('admin/timetable/')"></app-tree>
+  </mat-sidenav>
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapperr">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-sidenav-container>

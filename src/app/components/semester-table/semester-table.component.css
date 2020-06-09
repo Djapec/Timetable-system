@@ -1,0 +1,14 @@
+table{
+  width: 100%;
+}
+table th,td{
+  text-align: center;
+}
+.viewbutton {
+  margin-left: 20px;
+}
+a{
+  text-decoration: none;
+  text-align: justify;
+  color: white;
+}
